@@ -1,17 +1,142 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Forsíða">
+  <div class="home-hero">
+    <div class="home-hero-left">
+      <div class="home-hero-eyebrow">Kvikmyndadreifing & þjónusta</div>
+      <h1>Við komum<br>myndunum<br><span>í bíó.</span></h1>
+    </div>
+    <div class="home-hero-right">
+      <p>Myndform hefur starfað við kvikmyndadreifingu, hönnun, prentun og heildsölu í áratugi. Við þjónum kvikmyndahúsum, smásöluaðilum og auglýsendum um allt land.</p>
+      <div class="home-services">
+        <a href="/films" class="service-card">
+          <div class="service-icon">🎬</div>
+          <div class="service-name">Kvikmyndadreifing</div>
+          <div class="service-desc">Dreifing á erlendum og innlendum myndum</div>
+        </a>
+        <a href="/portfolio" class="service-card">
+          <div class="service-icon">🎨</div>
+          <div class="service-name">Auglýsingahönnun</div>
+          <div class="service-desc">Hönnun og framleiðsla auglýsinga</div>
+        </a>
+        <a href="#" class="service-card">
+          <div class="service-icon">🖨️</div>
+          <div class="service-name">Prentun</div>
+          <div class="service-desc">Bílamerkingar, skilt og prentverkefni</div>
+        </a>
+        <a href="#" class="service-card">
+          <div class="service-icon">📦</div>
+          <div class="service-name">Heildsala</div>
+          <div class="service-desc">Borðspil, leikföng og matvörur</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="upcoming-strip">
+    <div class="upcoming-label">Væntanlegt</div>
+    <div class="upcoming-divider"></div>
+    <a href="/films" class="upcoming-film">
+      <div class="upcoming-dot"></div>
+      <span class="upcoming-name">Minions & Monsters</span>
+      <span class="upcoming-date">1. júlí</span>
+    </a>
+    <a href="/films" class="upcoming-film">
+      <div class="upcoming-dot"></div>
+      <span class="upcoming-name">The Odyssey</span>
+      <span class="upcoming-date">16. júlí</span>
+    </a>
+    <a href="/films" class="upcoming-film">
+      <div class="upcoming-dot"></div>
+      <span class="upcoming-name">Cliffhanger</span>
+      <span class="upcoming-date">13. ágúst</span>
+    </a>
+    <a href="/films" class="upcoming-film">
+      <div class="upcoming-dot"></div>
+      <span class="upcoming-name">Hunger Games: Sunrise on the Reaping</span>
+      <span class="upcoming-date">19. nóvember</span>
+    </a>
+  </div>
+</Layout>
+
+<style>
+  .home-hero {
+    background: var(--black);
+    color: var(--white);
+    padding: 80px 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .home-hero-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--red); margin-bottom: 16px;
+  }
+  h1 {
+    font-size: 52px; font-weight: 700; line-height: 1.05;
+    letter-spacing: -0.02em; color: var(--white); margin-bottom: 0;
+  }
+  h1 span { color: var(--red); }
+  .home-hero-right p {
+    font-size: 16px; color: rgba(255,255,255,0.65);
+    line-height: 1.75; margin-bottom: 32px;
+  }
+  .home-services {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  }
+  .service-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px; padding: 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s, border-color 0.15s;
+    display: block;
+  }
+  .service-card:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.2);
+  }
+  .service-icon { font-size: 20px; margin-bottom: 8px; }
+  .service-name { font-size: 13px; font-weight: 500; color: var(--white); margin-bottom: 4px; }
+  .service-desc { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.5; }
+
+  .upcoming-strip {
+    background: var(--red);
+    padding: 20px 32px;
+    display: flex; align-items: center; gap: 24px;
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .upcoming-strip::-webkit-scrollbar { display: none; }
+  .upcoming-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(255,255,255,0.7);
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .upcoming-divider {
+    width: 1px; height: 24px;
+    background: rgba(255,255,255,0.3); flex-shrink: 0;
+  }
+  .upcoming-film {
+    display: flex; align-items: center; gap: 10px;
+    flex-shrink: 0; text-decoration: none;
+    color: inherit;
+    opacity: 0.9; transition: opacity 0.15s;
+  }
+  .upcoming-film:hover { opacity: 1; }
+  .upcoming-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,0.6); flex-shrink: 0;
+  }
+  .upcoming-name { font-size: 13px; font-weight: 500; color: var(--white); white-space: nowrap; }
+  .upcoming-date { font-size: 11px; color: rgba(255,255,255,0.6); white-space: nowrap; }
+
+  @media (max-width: 700px) {
+    .home-hero { grid-template-columns: 1fr; padding: 48px 20px; gap: 32px; }
+    h1 { font-size: 36px; }
+    .home-services { grid-template-columns: 1fr; }
+  }
+</style>

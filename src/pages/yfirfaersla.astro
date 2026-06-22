@@ -1,0 +1,162 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Yfirfærsla">
+  <div class="page-hero">
+    <div class="page-hero-left">
+      <div class="eyebrow">Hönnun & framleiðsla</div>
+      <h1>Yfirfærsla</h1>
+    </div>
+    <div class="page-hero-right">
+      <p>Við flytjum gamalt efni yfir á stafrænt snið — VHS, Super 8, myndspiður og fleira. Geymdu minningarnar áður en það er of seint.</p>
+      <a href="mailto:myndform@myndform.is" class="cta-btn">Hafðu samband</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-name">VHS</div>
+        <div class="feature-desc">Við flytjum VHS og VHS-C yfir á stafrænt snið í hágæða upplausn.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-name">Super 8 & 8mm</div>
+        <div class="feature-desc">Gamlar kvikmyndaspólur fluttar yfir með varðveislu á upprunalegu gæðunum.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-name">Myndspiður</div>
+        <div class="feature-desc">Betamax, Video8, Hi8 og fleiri eldri snið — við höndlum þau öll.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-name">Hljóðspólur</div>
+        <div class="feature-desc">Hljóðupptökur á spólum fluttar yfir á stafrænt snið.</div>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <div class="info-block-text">
+        <h2>Hvernig virkar það?</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <div class="step-title">Sendu okkur efnið</div>
+              <div class="step-desc">Komdu með kassettuna eða spóluna á skrifstofu okkar í Hafnarfirði.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <div class="step-title">Við flytjum yfir</div>
+              <div class="step-desc">Við sjáum um alla tæknilega hluta yfirfærslunnar með faglegum búnaði.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <div class="step-title">Þú færð skrárnar</div>
+              <div class="step-desc">Við afhendum þér efnið á USB eða sendum yfir net — þitt val.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-strip">
+    <div>
+      <div class="cta-strip-title">Ertu með gamalt efni sem þarfnast yfirfærslu?</div>
+      <div class="cta-strip-sub">Hafðu samband og við metum verkefnið.</div>
+    </div>
+    <a href="mailto:myndform@myndform.is" class="cta-btn-red">Hafðu samband</a>
+  </div>
+</Layout>
+
+<style>
+  .page-hero {
+    background: var(--red);
+    padding: 56px 32px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 48px; align-items: center;
+  }
+  .eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 12px;
+  }
+  h1 {
+    font-size: 44px; font-weight: 700; color: var(--white);
+    line-height: 1.05; letter-spacing: -0.02em;
+  }
+  .page-hero-right p {
+    font-size: 14px; color: rgba(255,255,255,0.85);
+    line-height: 1.75; margin-bottom: 24px;
+  }
+  .cta-btn {
+    display: inline-block;
+    border: 2px solid rgba(255,255,255,0.85); color: var(--white);
+    background: transparent; padding: 11px 22px; border-radius: 3px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.15s;
+  }
+  .cta-btn:hover { background: rgba(255,255,255,0.15); }
+
+  .content { padding: 48px 32px; }
+
+  .feature-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 16px; margin-bottom: 48px;
+  }
+  .feature-card {
+    background: var(--gray-10);
+    border-radius: 8px; padding: 24px;
+    border-left: 3px solid var(--red);
+  }
+  .feature-name { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+  .feature-desc { font-size: 13px; color: var(--gray-60); line-height: 1.6; }
+
+  .info-block { background: var(--gray-10); border-radius: 8px; padding: 40px; }
+  h2 {
+    font-size: 22px; font-weight: 700; margin-bottom: 32px;
+    letter-spacing: -0.01em;
+  }
+  .steps { display: flex; flex-direction: column; gap: 24px; }
+  .step { display: flex; gap: 20px; align-items: flex-start; }
+  .step-number {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--red); color: var(--white);
+    font-size: 13px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .step-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .step-desc { font-size: 13px; color: var(--gray-60); line-height: 1.6; }
+
+  .cta-strip {
+    margin: 48px 32px;
+    background: var(--gray-10); border-radius: 8px;
+    padding: 28px 32px;
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 24px;
+  }
+  .cta-strip-title { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
+  .cta-strip-sub { font-size: 13px; color: var(--gray-60); }
+  .cta-btn-red {
+    display: inline-block;
+    border: 2px solid var(--red); color: var(--red);
+    background: transparent; padding: 11px 22px; border-radius: 3px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none; white-space: nowrap;
+    transition: background 0.15s, color 0.15s;
+  }
+  .cta-btn-red:hover { background: var(--red); color: var(--white); }
+
+  @media (max-width: 700px) {
+    .page-hero { grid-template-columns: 1fr; padding: 48px 20px; }
+    h1 { font-size: 32px; }
+    .feature-grid { grid-template-columns: repeat(2, 1fr); }
+    .info-block { padding: 24px; }
+    .cta-strip { flex-direction: column; align-items: flex-start; margin: 32px 20px; }
+  }
+</style>

@@ -1,0 +1,220 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Heildsala">
+  <div class="page-hero">
+    <div class="page-hero-left">
+      <div class="eyebrow">Myndform</div>
+      <h1>Heildsala</h1>
+    </div>
+    <div class="page-hero-right">
+      <p>Við dreifum og seljum á heildsöluverði til verslana og fyrirtækja um allt land — borðspil, leikföng, mat- og drykkjarvörur. Hafðu samband til að gerast viðskiptavinur.</p>
+      <a href="mailto:myndform@myndform.is" class="cta-btn">Gerast viðskiptavinur</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="category">
+      <div class="category-header">
+        <h2>Borðspil</h2>
+        <p>Við dreifum nokkrum af vinsælustu borðspilum Norðurlandanna á Íslandi.</p>
+      </div>
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-thumb bg-warm"></div>
+          <div class="product-name">KrakkaAlias</div>
+          <div class="product-cat">Borðspil</div>
+        </div>
+        <div class="product-card">
+          <div class="product-thumb bg-slate"></div>
+          <div class="product-name">Alias</div>
+          <div class="product-cat">Borðspil</div>
+        </div>
+        <div class="product-card">
+          <div class="product-thumb bg-dark"></div>
+          <div class="product-name">Negla</div>
+          <div class="product-cat">Borðspil</div>
+        </div>
+        <div class="product-card">
+          <div class="product-thumb bg-mid"></div>
+          <div class="product-name">Fjölskylduspilið</div>
+          <div class="product-cat">Borðspil</div>
+        </div>
+        <div class="product-card">
+          <div class="product-thumb bg-warm"></div>
+          <div class="product-name">Langbesta svarið</div>
+          <div class="product-cat">Borðspil</div>
+        </div>
+        <div class="product-card">
+          <div class="product-thumb bg-slate"></div>
+          <div class="product-name">Krakka segðu</div>
+          <div class="product-cat">Borðspil</div>
+        </div>
+        <div class="product-card">
+          <div class="product-thumb bg-dark"></div>
+          <div class="product-name">Mitt fyrsta Alias</div>
+          <div class="product-cat">Borðspil</div>
+        </div>
+        <div class="product-card">
+          <div class="product-thumb bg-mid"></div>
+          <div class="product-name">Feluleikur í frumskóginum</div>
+          <div class="product-cat">Borðspil</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="category">
+      <div class="category-header">
+        <h2>Mat- og drykkjarvörur</h2>
+        <p>Vandvaldar vörur sem við dreifum til verslana um allt land.</p>
+      </div>
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-thumb bg-warm"></div>
+          <div class="product-name">Jimmy's Nachos To Go</div>
+          <div class="product-cat">Matvörur</div>
+        </div>
+        <div class="product-card">
+          <div class="product-thumb bg-mid"></div>
+          <div class="product-name">JIMMY's Popp: Toffee</div>
+          <div class="product-cat">Matvörur</div>
+        </div>
+        <div class="product-card">
+          <div class="product-thumb bg-slate"></div>
+          <div class="product-name">JIMMY's Popp: Salted Caramel</div>
+          <div class="product-cat">Matvörur</div>
+        </div>
+        <div class="product-card">
+          <div class="product-thumb bg-dark"></div>
+          <div class="product-name">Bio Smoothie – Peaceful</div>
+          <div class="product-cat">Drykkjarvörur</div>
+        </div>
+        <div class="product-card">
+          <div class="product-thumb bg-warm"></div>
+          <div class="product-name">GOLF orkustykki – Salted Caramel</div>
+          <div class="product-cat">Matvörur</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="category">
+      <div class="category-header">
+        <h2>Leikföng</h2>
+        <p>Við dreifum leikföngum fyrir börn á öllum aldri.</p>
+      </div>
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-thumb bg-slate"></div>
+          <div class="product-name">Leikföng — væntanlegt</div>
+          <div class="product-cat">Leikföng</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-strip">
+    <div>
+      <div class="cta-strip-title">Hefur þú áhuga á að selja vörur okkar?</div>
+      <div class="cta-strip-sub">Við tökum alltaf á móti nýjum viðskiptavinum — hafðu samband.</div>
+    </div>
+    <a href="mailto:myndform@myndform.is" class="cta-btn-red">Hafðu samband</a>
+  </div>
+</Layout>
+
+<style>
+  .page-hero {
+    background: var(--red);
+    padding: 56px 32px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 48px; align-items: center;
+  }
+  .eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 12px;
+  }
+  h1 {
+    font-size: 44px; font-weight: 700; color: var(--white);
+    line-height: 1.05; letter-spacing: -0.02em;
+  }
+  .page-hero-right p {
+    font-size: 14px; color: rgba(255,255,255,0.85);
+    line-height: 1.75; margin-bottom: 24px;
+  }
+  .cta-btn {
+    display: inline-block;
+    border: 2px solid rgba(255,255,255,0.85); color: var(--white);
+    background: transparent; padding: 11px 22px; border-radius: 3px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.15s;
+  }
+  .cta-btn:hover { background: rgba(255,255,255,0.15); }
+
+  .content { padding: 48px 32px; }
+
+  .category { margin-bottom: 0; }
+  .category-header { margin-bottom: 24px; }
+  h2 {
+    font-size: 22px; font-weight: 700; letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+  .category-header p {
+    font-size: 13px; color: var(--gray-60); line-height: 1.6;
+  }
+
+  .product-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .product-card { cursor: pointer; }
+  .product-thumb {
+    aspect-ratio: 1/1; border-radius: 8px;
+    margin-bottom: 10px;
+    border: 1px solid var(--gray-20);
+    transition: border-color 0.15s;
+  }
+  .product-card:hover .product-thumb { border-color: var(--gray-60); }
+  .product-name {
+    font-size: 13px; font-weight: 600; margin-bottom: 2px; line-height: 1.3;
+  }
+  .product-cat { font-size: 12px; color: var(--gray-60); }
+
+  .divider { height: 1px; background: var(--gray-20); margin: 48px 0; }
+
+  .bg-dark { background: #1a1a1a; }
+  .bg-mid { background: #aaaaaa; }
+  .bg-warm { background: #c0a898; }
+  .bg-slate { background: #8898aa; }
+  .bg-light { background: #d0ccc8; }
+
+  .cta-strip {
+    margin: 0 0 48px;
+    background: var(--gray-10); border-radius: 8px;
+    padding: 28px 32px;
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 24px;
+  }
+  .cta-strip-title { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
+  .cta-strip-sub { font-size: 13px; color: var(--gray-60); }
+  .cta-btn-red {
+    display: inline-block;
+    border: 2px solid var(--red); color: var(--red);
+    background: transparent; padding: 11px 22px; border-radius: 3px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none; white-space: nowrap;
+    transition: background 0.15s, color 0.15s;
+  }
+  .cta-btn-red:hover { background: var(--red); color: var(--white); }
+
+  @media (max-width: 700px) {
+    .page-hero { grid-template-columns: 1fr; padding: 48px 20px; }
+    h1 { font-size: 32px; }
+    .product-grid { grid-template-columns: repeat(2, 1fr); }
+    .cta-strip { flex-direction: column; align-items: flex-start; }
+  }
+</style>

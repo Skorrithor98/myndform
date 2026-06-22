@@ -1,0 +1,201 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Hönnun & framleiðsla">
+  <div class="portfolio-hero">
+    <div class="portfolio-hero-left">
+      <h1>Auglýsinga&shy;hönnun</h1>
+    </div>
+    <div class="portfolio-hero-right">
+      <p>Við hönnun og sköpum allar gerðir auglýsinga þvert á miðla og sjáum um að útfæra hvers konar kynningar- og markaðsefni. Hvort sem þú þarft sjónvarpsauglýsingar, stafrænt efni, blöð, bæklinga, límmiða eða stærri prentverkefni — við tryggjum faglega útfærslu.</p>
+      <a href="mailto:myndform@myndform.is" class="cta-btn">Hafðu samband</a>
+    </div>
+  </div>
+
+  <div class="portfolio-grid">
+    <div class="grid-label">Auglýsingaverkefni</div>
+
+    <div class="row two">
+      <div class="item tall bg-dark"><div class="ph">🎬</div><div class="hover-label">Bíóauglýsing</div></div>
+      <div class="item tall bg-mid"><div class="ph">🖨️</div><div class="hover-label">Prentverkefni</div></div>
+    </div>
+
+    <div class="row four">
+      <div class="item sq bg-warm"><div class="ph">🏷️</div><div class="hover-label">Límmiðar</div></div>
+      <div class="item sq bg-red"><div class="ph">📋</div><div class="hover-label">Skiltagerð</div></div>
+      <div class="item sq bg-slate"><div class="ph">📖</div><div class="hover-label">Bæklingar</div></div>
+      <div class="item sq bg-light"><div class="ph">📱</div><div class="hover-label">Stafrænt efni</div></div>
+    </div>
+
+    <div class="row four">
+      <div class="item sq bg-mid"><div class="ph">🎞️</div><div class="hover-label">Kvikmyndapóstar</div></div>
+      <div class="item sq bg-dark"><div class="ph">📺</div><div class="hover-label">Sjónvarpsauglýsingar</div></div>
+      <div class="item sq bg-warm"><div class="ph">🚗</div><div class="hover-label">Bílamerkingar</div></div>
+      <div class="item sq bg-red"><div class="ph">🎨</div><div class="hover-label">Vörumerkjaþróun</div></div>
+    </div>
+  </div>
+
+  <div class="service-section">
+    <div class="service-block">
+      <div class="service-block-text">
+        <div class="service-eyebrow">Þjónusta</div>
+        <h2>Hljóðver</h2>
+        <p>Við bjóðum upp á faglegt hljóðver til leigu — hvort sem þú ert að taka upp þátt, auglýsingu, kvikmynd eða tónlist. Búnaðurinn er í toppstandi og við getum aðstoðað við framleiðsluna.</p>
+        <a href="mailto:myndform@myndform.is" class="text-link">Fræðast nánar →</a>
+      </div>
+      <div class="service-block-visual bg-dark">
+        <div class="ph">🎙️</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="service-block reverse">
+      <div class="service-block-text">
+        <div class="service-eyebrow">Þjónusta</div>
+        <h2>Yfirfærsla</h2>
+        <p>Við flytjum gamalt efni yfir á stafrænt snið — VHS, Super 8, myndspiður og fleira. Geymdu minningarnar áður en það er of seint.</p>
+        <a href="mailto:myndform@myndform.is" class="text-link">Fræðast nánar →</a>
+      </div>
+      <div class="service-block-visual bg-slate">
+        <div class="ph">📼</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-strip">
+    <div>
+      <div class="cta-strip-title">Hefur þú verkefni í huga?</div>
+      <div class="cta-strip-sub">Við heyrum gjarnan frá þér — stórt eða lítið.</div>
+    </div>
+    <a href="mailto:myndform@myndform.is" class="cta-btn-red">Hafðu samband</a>
+  </div>
+</Layout>
+
+<style>
+  .portfolio-hero {
+    background: var(--red);
+    padding: 56px 32px 56px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 48px; align-items: center;
+  }
+  h1 {
+    font-size: 44px; font-weight: 700; color: var(--white);
+    line-height: 1.05; letter-spacing: -0.02em;
+  }
+  .portfolio-hero-right p {
+    font-size: 14px; color: rgba(255,255,255,0.85);
+    line-height: 1.75; margin-bottom: 24px;
+  }
+  .cta-btn {
+    display: inline-block;
+    border: 2px solid rgba(255,255,255,0.85); color: var(--white);
+    background: transparent; padding: 11px 22px; border-radius: 3px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.15s;
+  }
+  .cta-btn:hover { background: rgba(255,255,255,0.15); }
+
+  .portfolio-grid { padding: 0 20px 16px; }
+  .grid-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: #aaa; padding: 32px 8px 12px;
+  }
+  .row { display: grid; gap: 8px; margin-bottom: 8px; }
+  .row.two { grid-template-columns: 1fr 1fr; }
+  .row.four { grid-template-columns: repeat(4, 1fr); }
+
+  .item {
+    border-radius: 4px; overflow: hidden;
+    position: relative; cursor: pointer;
+  }
+  .item.tall { aspect-ratio: 4/3; }
+  .item.sq { aspect-ratio: 1/1; }
+
+  .ph {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px; opacity: 0.3;
+  }
+  .hover-label {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 60%);
+    display: flex; align-items: flex-end; padding: 14px;
+    font-size: 11px; font-weight: 600; color: #fff;
+    letter-spacing: 0.07em; text-transform: uppercase;
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .item:hover .hover-label { opacity: 1; }
+
+  .bg-dark { background: #1a1a1a; }
+  .bg-mid { background: #aaaaaa; }
+  .bg-warm { background: #c0a898; }
+  .bg-red { background: #c01010; }
+  .bg-slate { background: #8898aa; }
+  .bg-light { background: #d0ccc8; }
+
+  /* ── SERVICE SECTIONS ── */
+  .service-section { padding: 0 32px; }
+  .service-block {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 48px; align-items: center; padding: 48px 0;
+  }
+  .service-block.reverse { direction: rtl; }
+  .service-block.reverse .service-block-text { direction: ltr; }
+  .service-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--red); margin-bottom: 10px;
+  }
+  h2 {
+    font-size: 28px; font-weight: 700; letter-spacing: -0.01em;
+    margin-bottom: 14px;
+  }
+  .service-block-text p {
+    font-size: 14px; color: var(--gray-60); line-height: 1.75; margin-bottom: 20px;
+  }
+  .text-link {
+    font-size: 13px; font-weight: 600; color: var(--red);
+    text-decoration: none; transition: opacity 0.15s;
+  }
+  .text-link:hover { opacity: 0.7; }
+  .service-block-visual {
+    aspect-ratio: 4/3; border-radius: 8px;
+    position: relative; overflow: hidden;
+  }
+  .service-block-visual .ph { font-size: 48px; opacity: 0.2; }
+
+  .divider {
+    height: 1px; background: var(--gray-20);
+  }
+
+  /* ── CTA STRIP ── */
+  .cta-strip {
+    margin: 48px 32px;
+    background: var(--gray-10);
+    border-radius: 8px; padding: 28px 32px;
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 24px;
+  }
+  .cta-strip-title { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
+  .cta-strip-sub { font-size: 13px; color: var(--gray-60); }
+  .cta-btn-red {
+    display: inline-block;
+    border: 2px solid var(--red); color: var(--red);
+    background: transparent; padding: 11px 22px; border-radius: 3px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none; white-space: nowrap;
+    transition: background 0.15s, color 0.15s;
+  }
+  .cta-btn-red:hover { background: var(--red); color: var(--white); }
+
+  @media (max-width: 700px) {
+    .portfolio-hero { grid-template-columns: 1fr; padding: 48px 20px; }
+    h1 { font-size: 32px; }
+    .row.four { grid-template-columns: repeat(2, 1fr); }
+    .service-block { grid-template-columns: 1fr; }
+    .service-block.reverse { direction: ltr; }
+    .cta-strip { flex-direction: column; align-items: flex-start; margin: 32px 20px; }
+  }
+</style>

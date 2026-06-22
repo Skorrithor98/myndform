@@ -1,0 +1,155 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Um okkur">
+  <div class="page-hero">
+    <div class="page-hero-left">
+      <div class="eyebrow">Myndform</div>
+      <h1>Um okkur</h1>
+    </div>
+    <div class="page-hero-right">
+      <p>Myndform hefur starfað við kvikmyndadreifingu, hönnun, prentun og heildsölu í áratugi. Við erum staðsett í Trönuhrauni 1 í Hafnarfirði og þjónum viðskiptavinum um allt land.</p>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="info-grid">
+      <div class="info-block">
+        <div class="info-label">Staðsetning</div>
+        <div class="info-value">Trönuhraun 1<br>220 Hafnarfjörður</div>
+      </div>
+      <div class="info-block">
+        <div class="info-label">Sími</div>
+        <div class="info-value">+354 534 0400</div>
+      </div>
+      <div class="info-block">
+        <div class="info-label">Netfang</div>
+        <div class="info-value">
+          <a href="mailto:myndform@myndform.is">myndform@myndform.is</a>
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-label">Opnunartímar</div>
+        <div class="info-value">
+          Mánudagur 09–16<br>
+          Þriðjudagur–Föstudagur 09–17<br>
+          Lokað um helgar
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="services-overview">
+      <div class="services-overview-label">Þjónusta okkar</div>
+      <div class="services-list">
+        <a href="/films" class="service-row">
+          <div class="service-row-name">Kvikmyndadreifing</div>
+          <div class="service-row-desc">Dreifing á erlendum og innlendum kvikmyndum til íslenskra kvikmyndahúsa.</div>
+          <div class="service-row-arrow">→</div>
+        </a>
+        <a href="/portfolio" class="service-row">
+          <div class="service-row-name">Auglýsingahönnun</div>
+          <div class="service-row-desc">Hönnun og framleiðsla auglýsinga þvert á miðla.</div>
+          <div class="service-row-arrow">→</div>
+        </a>
+        <a href="/hljodver" class="service-row">
+          <div class="service-row-name">Hljóðver</div>
+          <div class="service-row-desc">Faglegt hljóðver til leigu fyrir þætti, auglýsingar og kvikmyndir.</div>
+          <div class="service-row-arrow">→</div>
+        </a>
+        <a href="/yfirfaersla" class="service-row">
+          <div class="service-row-name">Yfirfærsla</div>
+          <div class="service-row-desc">Yfirfærsla á gömlu efni yfir á stafrænt snið.</div>
+          <div class="service-row-arrow">→</div>
+        </a>
+        <a href="/prentun" class="service-row">
+          <div class="service-row-name">Prentun</div>
+          <div class="service-row-desc">Bílamerkingar, innréttingafilmur, skiltagerð og prentverkefni.</div>
+          <div class="service-row-arrow">→</div>
+        </a>
+        <a href="/heildsala" class="service-row">
+          <div class="service-row-name">Heildsala</div>
+          <div class="service-row-desc">Dreifing á borðspilum, leikföngum og mat- og drykkjarvörum.</div>
+          <div class="service-row-arrow">→</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .page-hero {
+    background: var(--red);
+    padding: 56px 32px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 48px; align-items: center;
+  }
+  .eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 12px;
+  }
+  h1 {
+    font-size: 44px; font-weight: 700; color: var(--white);
+    line-height: 1.05; letter-spacing: -0.02em;
+  }
+  .page-hero-right p {
+    font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.75;
+  }
+
+  .content { padding: 48px 32px; }
+
+  .info-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 32px; margin-bottom: 48px;
+  }
+  .info-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--gray-60); margin-bottom: 10px;
+  }
+  .info-value {
+    font-size: 14px; line-height: 1.7; color: var(--black);
+  }
+  .info-value a {
+    color: var(--red); text-decoration: none;
+  }
+  .info-value a:hover { text-decoration: underline; }
+
+  .divider { height: 1px; background: var(--gray-20); margin-bottom: 48px; }
+
+  .services-overview-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: #aaa; margin-bottom: 16px;
+  }
+  .services-list { display: flex; flex-direction: column; }
+  .service-row {
+    display: grid; grid-template-columns: 200px 1fr 32px;
+    gap: 24px; align-items: center;
+    padding: 20px 0; border-bottom: 1px solid var(--gray-20);
+    text-decoration: none; color: inherit;
+    transition: background 0.15s;
+  }
+  .service-row:first-child { border-top: 1px solid var(--gray-20); }
+  .service-row:hover { padding-left: 8px; }
+  .service-row-name {
+    font-size: 14px; font-weight: 600; color: var(--black);
+  }
+  .service-row-desc {
+    font-size: 13px; color: var(--gray-60); line-height: 1.5;
+  }
+  .service-row-arrow {
+    font-size: 18px; color: var(--red); text-align: right;
+    opacity: 0; transition: opacity 0.15s;
+  }
+  .service-row:hover .service-row-arrow { opacity: 1; }
+
+  @media (max-width: 700px) {
+    .page-hero { grid-template-columns: 1fr; padding: 48px 20px; }
+    h1 { font-size: 32px; }
+    .info-grid { grid-template-columns: repeat(2, 1fr); }
+    .content { padding: 40px 20px; }
+    .service-row { grid-template-columns: 1fr; gap: 4px; }
+    .service-row-arrow { display: none; }
+  }
+</style>

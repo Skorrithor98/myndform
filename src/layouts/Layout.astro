@@ -1,0 +1,153 @@
+---
+const { title } = Astro.props;
+---
+
+<html lang="is">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} · Myndform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style is:global>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      :root {
+        --red: #e02020;
+        --red-dark: #b81010;
+        --black: #111111;
+        --gray-60: #666666;
+        --gray-20: #e8e8e8;
+        --gray-10: #f5f5f5;
+        --white: #ffffff;
+        --font: 'Inter', system-ui, sans-serif;
+      }
+
+      body {
+        font-family: var(--font);
+        color: var(--black);
+        background: var(--white);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: sticky; top: 0; z-index: 100;
+        background: var(--white);
+        border-bottom: 1px solid var(--gray-20);
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0 32px; height: 56px;
+      }
+      .nav-logo {
+        font-size: 14px; font-weight: 700; letter-spacing: 0.14em;
+        text-transform: uppercase; color: var(--black); text-decoration: none;
+      }
+      .nav-logo .o { color: var(--red); }
+.nav-links {
+  display: flex; gap: 0; list-style: none; height: 100%;
+  position: absolute; left: 50%; transform: translateX(-50%);
+}
+      
+      .nav-links > li {
+        position: relative; height: 100%;
+        display: flex; align-items: center;
+      }
+      .nav-links > li > a {
+        font-size: 13px; color: var(--gray-60); text-decoration: none;
+        letter-spacing: 0.03em; transition: color 0.15s;
+        padding: 0 16px; height: 100%;
+        display: flex; align-items: center; gap: 4px;
+      }
+      .nav-links > li > a:hover { color: var(--black); }
+      .nav-links > li > a.active { color: var(--black); font-weight: 500; }
+
+      /* dropdown arrow */
+      .nav-links > li > a .arrow {
+        font-size: 9px; opacity: 0.5; transition: transform 0.2s;
+      }
+      .nav-links > li:hover > a .arrow { transform: rotate(180deg); }
+
+      /* ── DROPDOWN ── */
+      .dropdown {
+        display: none;
+        position: absolute; top: 100%; left: 0;
+        background: var(--white);
+        border: 1px solid var(--gray-20);
+        border-top: 2px solid var(--red);
+        border-radius: 0 0 6px 6px;
+        min-width: 200px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        z-index: 200;
+      }
+      .nav-links > li:hover .dropdown { display: block; }
+      .dropdown a {
+        display: block; padding: 12px 16px;
+        font-size: 13px; color: var(--gray-60);
+        text-decoration: none; transition: background 0.15s, color 0.15s;
+        border-bottom: 1px solid var(--gray-20);
+      }
+      .dropdown a:last-child { border-bottom: none; }
+      .dropdown a:hover {
+        background: var(--gray-10); color: var(--black);
+      }
+      .dropdown a .dropdown-icon {
+        display: inline-block; width: 20px;
+        font-size: 14px; margin-right: 6px;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        border-top: 1px solid var(--gray-20);
+        padding: 24px 32px;
+        display: flex; justify-content: space-between; align-items: center;
+      }
+      .footer-logo {
+        font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+        text-transform: uppercase; color: var(--gray-60);
+      }
+      .footer-logo .o { color: var(--red); }
+      .footer-info { font-size: 12px; color: var(--gray-60); text-align: right; line-height: 1.7; }
+      .footer-hours { font-size: 12px; color: var(--gray-60); }
+
+      @media (max-width: 700px) {
+        nav { padding: 0 20px; }
+        .nav-links { display: none; }
+        footer { flex-direction: column; gap: 12px; align-items: flex-start; }
+        .footer-info { text-align: left; }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a class="nav-logo" href="/">MYNDF<span class="o">O</span>RM</a>
+      <ul class="nav-links">
+        <li><a href="/">Forsíða</a></li>
+        <li><a href="/films">Kvikmyndadreifing</a></li>
+        <li>
+          <a href="/portfolio">Hönnun & framleiðsla <span class="arrow">▼</span></a>
+          <div class="dropdown">
+            <a href="/portfolio"><span class="dropdown-icon">🎨</span>Auglýsingahönnun</a>
+            <a href="/hljodver"><span class="dropdown-icon">🎙️</span>Hljóðver</a>
+            <a href="/yfirfaersla"><span class="dropdown-icon">📼</span>Yfirfærsla</a>
+            <a href="/prentun"><span class="dropdown-icon">🖨️</span>Prentun</a>
+          </div>
+        </li>
+        <li><a href="/heildsala">Heildsala</a></li>
+        <li><a href="/celsius">Celsius</a></li>
+        <li><a href="/um-okkur">Um okkur</a></li>
+      </ul>
+    </nav>
+
+    <slot />
+
+    <footer>
+      <div class="footer-logo">MYNDF<span class="o">O</span>RM</div>
+      <div class="footer-hours">Mán 09–16 · Þri–Fös 09–17 · Lokað um helgar</div>
+      <div class="footer-info">
+        Trönuhraun 1, 220 Hafnarfjörður<br />
+        +354 534 0400 · myndform@myndform.is
+      </div>
+    </footer>
+  </body>
+</html>
