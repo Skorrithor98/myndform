@@ -144,6 +144,23 @@ const { title } = Astro.props;
       .footer-logo img { height: 28px; width: auto; }
       .footer-info { font-size: 12px; color: var(--gray-60); text-align: right; line-height: 1.7; }
       .footer-hours { font-size: 12px; color: var(--gray-60); }
+      /* ── SMOOTH TRANSITIONS ── */
+a { transition: color 0.2s ease; }
+
+nav {
+  transition: box-shadow 0.3s ease;
+}
+nav.scrolled {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  border-bottom-color: transparent;
+}
+
+.nav-links > li > a::after {
+  content: ''; position: absolute; bottom: 0; left: 16px; right: 16px;
+  height: 2px; background: var(--red);
+  transform: scaleX(0); transition: transform 0.3s ease;
+}
+.nav-links > li > a:hover::after { transform: scaleX(1); }
 
       @media (max-width: 960px) {
         nav { padding: 0 20px; }
@@ -230,6 +247,16 @@ const { title } = Astro.props;
           mobileMenu.classList.remove('open');
           document.body.style.overflow = '';
         });
+      });
+
+      // Nav shadow on scroll
+      window.addEventListener('scroll', () => {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 20) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
       });
     </script>
   </body>
