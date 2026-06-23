@@ -109,7 +109,18 @@ const { title } = Astro.props;
         flex-direction: column;
         overflow-y: auto;
       }
-      .mobile-menu.open { display: flex; }
+      .mobile-menu {
+  transform: translateY(-10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  display: flex;
+}
+.mobile-menu.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
       .mobile-menu a {
         font-size: 20px; font-weight: 600;
         color: var(--black); text-decoration: none;
