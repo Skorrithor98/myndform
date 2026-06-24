@@ -1,5 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { client, urlFor } from '../sanityClient.js';
+
+const films = await client.fetch(`*[_type == "film"] | order(releaseDate asc)`);
+const nowFilms = films.filter(f => f.status === 'now');
+const soonFilms = films.filter(f => f.status === 'soon');
+const archiveFilms = films.filter(f => f.status === 'archive');
 ---
 
 <Layout title="Kvikmyndadreifing">
@@ -16,130 +22,47 @@ import Layout from '../layouts/Layout.astro';
 
   <div id="tab-now" class="tab-content section">
     <div class="film-grid">
-      <div class="film-card">
-        <div class="film-card-poster p3"><div class="film-card-art">⚡</div></div>
-        <div class="film-badge badge-now">Í bíó</div>
-        <div class="film-card-title">The Furious</div>
-        <div class="film-card-date">18. júní 2026</div>
-      </div>
-      <div class="film-card">
-        <div class="film-card-poster p4"><div class="film-card-art">👁️</div></div>
-        <div class="film-badge badge-now">Í bíó</div>
-        <div class="film-card-title">Obsession</div>
-        <div class="film-card-date">28. maí 2026</div>
-      </div>
-      <div class="film-card">
-        <div class="film-card-poster p1"><div class="film-card-art">🚪</div></div>
-        <div class="film-badge badge-now">Í bíó</div>
-        <div class="film-card-title">Backrooms</div>
-        <div class="film-card-date">28. maí 2026</div>
-      </div>
-      <div class="film-card">
-        <div class="film-card-poster p5"><div class="film-card-art">🛸</div></div>
-        <div class="film-badge badge-now">Í bíó</div>
-        <div class="film-card-title">Disclosure Day</div>
-        <div class="film-card-date">10. júní 2026</div>
-      </div>
+      {nowFilms.map(film => (
+        <div class="film-card">
+          <div class="film-card-poster">
+  {film.poster && <img src={urlFor(film.poster).width(600).url()} alt={film.title} />}
+</div>
+          <div class="film-badge badge-now">Í bíó</div>
+          <div class="film-card-title">{film.title}</div>
+          <div class="film-card-date">{film.releaseDate}</div>
+        </div>
+      ))}
     </div>
   </div>
 
   <div id="tab-soon" class="tab-content section" style="display:none">
-    <div class="film-grid">
+  <div class="film-grid">
+    {soonFilms.map(film => (
       <div class="film-card">
-        <div class="film-card-poster p2"><div class="film-card-art">👾</div></div>
-        <div class="film-badge badge-soon">1. júlí</div>
-        <div class="film-card-title">Skósveinar og skrímsli</div>
-        <div class="film-card-date">1. júlí 2026</div>
+        <div class="film-card-poster">
+          {film.poster && <img src={urlFor(film.poster).width(600).url()} alt={film.title} />}
+        </div>
+        <div class="film-badge badge-soon">{film.releaseDate}</div>
+        <div class="film-card-title">{film.title}</div>
+        <div class="film-card-date">{film.releaseDate}</div>
       </div>
-      <div class="film-card">
-        <div class="film-card-poster p6"><div class="film-card-art">🌊</div></div>
-        <div class="film-badge badge-soon">16. júlí</div>
-        <div class="film-card-title">The Odyssey</div>
-        <div class="film-card-date">16. júlí 2026</div>
-      </div>
-      <div class="film-card">
-        <div class="film-card-poster p7"><div class="film-card-art">🌙</div></div>
-        <div class="film-badge badge-soon">13. ágúst</div>
-        <div class="film-card-title">One Night Only</div>
-        <div class="film-card-date">13. ágúst 2026</div>
-      </div>
-      <div class="film-card">
-        <div class="film-card-poster p3"><div class="film-card-art">🏔️</div></div>
-        <div class="film-badge badge-soon">13. ágúst</div>
-        <div class="film-card-title">Cliffhanger</div>
-        <div class="film-card-date">13. ágúst 2026</div>
-      </div>
-      <div class="film-card">
-        <div class="film-card-poster p8"><div class="film-card-art">🧖</div></div>
-        <div class="film-badge badge-soon">20. ágúst</div>
-        <div class="film-card-title">Spa Weekend</div>
-        <div class="film-card-date">20. ágúst 2026</div>
-      </div>
-      <div class="film-card">
-        <div class="film-card-poster p4"><div class="film-card-art">🏹</div></div>
-        <div class="film-badge badge-soon">3. september</div>
-        <div class="film-card-title">By Any Means</div>
-        <div class="film-card-date">3. september 2026</div>
-      </div>
-      <div class="film-card">
-        <div class="film-card-poster p1"><div class="film-card-art">💥</div></div>
-        <div class="film-badge badge-soon">9. september</div>
-        <div class="film-card-title">Onslaught</div>
-        <div class="film-card-date">9. september 2026</div>
-      </div>
-      <div class="film-card">
-        <div class="film-card-poster p5"><div class="film-card-art">🎬</div></div>
-        <div class="film-badge badge-soon">19. nóvember</div>
-        <div class="film-card-title">Hunger Games: Sunrise on the Reaping</div>
-        <div class="film-card-date">19. nóvember 2026</div>
-      </div>
-    </div>
+    ))}
   </div>
+</div>
 
   <div id="tab-archive" class="tab-content section" style="display:none">
-    <div class="film-grid">
+  <div class="film-grid">
+    {archiveFilms.map(film => (
       <div class="film-card">
-        <div class="film-card-poster p6"><div class="film-card-art">🎭</div></div>
-        <div class="film-card-title">Him</div>
-        <div class="film-card-date">September 2025</div>
+        <div class="film-card-poster">
+          {film.poster && <img src={urlFor(film.poster).width(600).url()} alt={film.title} />}
+        </div>
+        <div class="film-card-title">{film.title}</div>
+        <div class="film-card-date">{film.releaseDate}</div>
       </div>
-      <div class="film-card">
-        <div class="film-card-poster p3"><div class="film-card-art">🥊</div></div>
-        <div class="film-card-title">The Smashing Machine</div>
-        <div class="film-card-date">Oktober 2025</div>
-      </div>
-      <div class="film-card">
-        <div class="film-card-poster p8"><div class="film-card-art">🏠</div></div>
-        <div class="film-card-title">Dúkkuhús Gabbýjar</div>
-        <div class="film-card-date">Oktober 2025</div>
-      </div>
-      <div class="film-card">
-        <div class="film-card-poster p1"><div class="film-card-art">📞</div></div>
-        <div class="film-card-title">Black Phone 2</div>
-        <div class="film-card-date">Oktober 2025</div>
-      </div>
-      <div class="film-card">
-        <div class="film-card-poster p2"><div class="film-card-art">🐝</div></div>
-        <div class="film-card-title">Bugonia</div>
-        <div class="film-card-date">Oktober 2025</div>
-      </div>
-      <div class="film-card">
-        <div class="film-card-poster p7"><div class="film-card-art">👹</div></div>
-        <div class="film-card-title">Skrímslasveitin</div>
-        <div class="film-card-date">Oktober 2025</div>
-      </div>
-      <div class="film-card">
-        <div class="film-card-poster p4"><div class="film-card-art">🔐</div></div>
-        <div class="film-card-title">Keeper</div>
-        <div class="film-card-date">Nóvember 2025</div>
-      </div>
-      <div class="film-card">
-        <div class="film-card-poster p5"><div class="film-card-art">🪄</div></div>
-        <div class="film-card-title">Now You See Me: Now You Don't</div>
-        <div class="film-card-date">Nóvember 2025</div>
-      </div>
-    </div>
+    ))}
   </div>
+</div>
 </Layout>
 
 <style>
@@ -178,12 +101,15 @@ import Layout from '../layouts/Layout.astro';
   }
   .film-card { cursor: pointer; }
   .film-card-poster {
-    aspect-ratio: 2/3; border-radius: 6px;
-    overflow: hidden; position: relative;
-    margin-bottom: 10px;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .film-card-art { font-size: 40px; }
+  aspect-ratio: 2/3; border-radius: 6px;
+  overflow: hidden; position: relative;
+  margin-bottom: 10px;
+  background: #1a1a1a;
+}
+.film-card-poster img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
   .film-badge {
     display: inline-block; font-size: 10px; font-weight: 600;
     letter-spacing: 0.08em; text-transform: uppercase;
