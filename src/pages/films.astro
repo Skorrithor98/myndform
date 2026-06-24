@@ -1,11 +1,7 @@
 ---
+---
 import Layout from '../layouts/Layout.astro';
-import { client, urlFor } from '../sanityClient.js';
-
-const films = await client.fetch(`*[_type == "film"] | order(releaseDate asc)`);
-const nowFilms = films.filter(f => f.status === 'now');
-const soonFilms = films.filter(f => f.status === 'soon');
-const archiveFilms = films.filter(f => f.status === 'archive');
+---
 ---
 
 <Layout title="Kvikmyndadreifing">
@@ -51,18 +47,16 @@ const archiveFilms = films.filter(f => f.status === 'archive');
 </div>
 
   <div id="tab-archive" class="tab-content section" style="display:none">
-  <div class="film-grid">
-    {archiveFilms.map(film => (
-      <div class="film-card">
-        <div class="film-card-poster">
-          {film.poster && <img src={urlFor(film.poster).width(600).url()} alt={film.title} />}
+    <div class="film-grid">
+      {archiveFilms.map(film => (
+        <div class="film-card">
+          <div class="film-card-poster p6"></div>
+          <div class="film-card-title">{film.title}</div>
+          <div class="film-card-date">{film.releaseDate}</div>
         </div>
-        <div class="film-card-title">{film.title}</div>
-        <div class="film-card-date">{film.releaseDate}</div>
-      </div>
-    ))}
+      ))}
+    </div>
   </div>
-</div>
 </Layout>
 
 <style>
