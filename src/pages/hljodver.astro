@@ -9,38 +9,36 @@ import Layout from '../layouts/Layout.astro';
       <h1>Hljóðver</h1>
     </div>
     <div class="page-hero-right">
-      <p>Árið 2011 var útbúið fullkomið hljóðver og árið 2016 var svo bætt við öðru hljóðveri. Myndform hefur hljóðsett nokkrar vinsælustu teiknimyndir síðustu ára, auk þess hafa fjölmargar auglýsingar verið lesnar hér og hljóðblandaðar.</p>
-      <a href="mailto:myndform@myndform.is" class="cta-btn">Hafðu samband</a>
+      <p>Myndform hefur talsett margar af vinsælustu teiknimyndum síðustu ára og rekur tvö fullbúin hljóðver. Hvort sem þú vilt talsetja efni, taka upp eða leigja hljóðver — við erum klár.</p>
+      <a href="mailto:myndform@myndform.is?subject=Fyrirspurn%20um%20hlj%C3%B3%C3%B0ver" class="cta-btn">Hljóðver til leigu — hafðu samband</a>
     </div>
   </div>
 
   <div class="content">
 
-    <div class="studio-section">
-      <div class="studio-intro">
-        <h2>Hljóðverið okkar</h2>
-        <p>Við búum yfir tveimur faglegum hljóðverum með nýjasta búnað til upptöku, blöndunar og masteringar. Hljóðverin eru til leigu og við getum einnig aðstoðað við framleiðsluna.</p>
-      </div>
-      <div class="photo-grid">
-        <div class="photo-item tall bg-studio-1">
-          <div class="photo-label">Aðalhljóðver</div>
-        </div>
-        <div class="photo-item tall bg-studio-2">
-          <div class="photo-label">Blöndunarpultar</div>
-        </div>
-        <div class="photo-item tall bg-studio-3">
-          <div class="photo-label">Stjórnborð</div>
-        </div>
-        <div class="photo-item tall bg-studio-4">
-          <div class="photo-label">Hljóðnemi</div>
-        </div>
-      </div>
+    <!-- ── TALSETNING (leads) ── -->
+    <div class="section-intro">
+      <div class="eyebrow-red">Talsetning</div>
+      <h2>Íslenskar raddir í uppáhaldsmyndunum</h2>
+      <p>Mikill fjöldi erlendra teiknimynda hefur verið talsettur hjá Myndform. Í samvinnu við framúrskarandi leikstjóra og stórskotalið íslenskra leikara höfum við tryggt að íslensk tunga sé alltaf til boða í skemmtiefni fyrir ungviði landsins.</p>
     </div>
+    <div id="dubbed-root" class="dubbed-grid"><p class="loading">Sæki myndir…</p></div>
 
+    <div class="divider"></div>
+
+    <!-- ── STUDIO ── -->
+    <div class="section-intro">
+      <div class="eyebrow-red">Hljóðverin okkar</div>
+      <h2>Tvö fullbúin hljóðver</h2>
+      <p>Árið 2011 var útbúið fullkomið hljóðver og árið 2016 bættist annað við. Hljóðverin eru til leigu með nýjasta búnaði til upptöku, blöndunar og masteringar — og við getum aðstoðað við framleiðsluna.</p>
+    </div>
+    <div id="studio-root" class="studio-grid"><p class="loading">Sæki myndir…</p></div>
+
+    <!-- ── SERVICES ── -->
     <div class="feature-grid">
       <div class="feature-card">
         <div class="feature-name">Upptökur</div>
-        <div class="feature-desc">Raddar, þættir, auglýsingar og kvikmyndir — við tökum við öllum verkefnum.</div>
+        <div class="feature-desc">Raddir, þættir, auglýsingar og kvikmyndir — við tökum við öllum verkefnum.</div>
       </div>
       <div class="feature-card">
         <div class="feature-name">Blöndun & meðhöndlun</div>
@@ -48,35 +46,11 @@ import Layout from '../layouts/Layout.astro';
       </div>
       <div class="feature-card">
         <div class="feature-name">Kvikmyndahljóð</div>
-        <div class="feature-desc">Hljóðlegar lausnir sérstaklega fyrir kvikmyndir og sjónvarpsefni.</div>
+        <div class="feature-desc">Hljóðlausnir sérstaklega fyrir kvikmyndir og sjónvarpsefni.</div>
       </div>
       <div class="feature-card">
         <div class="feature-name">Útvarp & podcast</div>
-        <div class="feature-desc">Tækni og aðstaða fyrir útvarpsdæmi og hlaðvarp í heimsmælikvarða.</div>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="talsetning-section">
-      <div class="talsetning-intro">
-        <h2>Talsetning</h2>
-        <p>Mikill fjöldi erlendra teiknimynda hafa verið talsettar hjá Myndform. Í samvinnu við framúrskarandi leikstjóra, ásamt stórskotaliði íslenskra leikara, hefur Myndform tekist að tryggja það að íslensk tunga sé alltaf til boða í skemmtiefni fyrir ungviði landsins.</p>
-        <p>Vinsælar teiknimyndir sem Myndform hefur látið talsetja: Wicked, Aulinn ég, Skósveinarnir, Super Mario Bros Bíómyndin, Viana, Finding Dory, svo eitthvað sé nefnt.</p>
-      </div>
-      <div class="photo-grid">
-        <div class="photo-item tall bg-film-1">
-          <div class="photo-label">Skósveinarnir</div>
-        </div>
-        <div class="photo-item tall bg-film-2">
-          <div class="photo-label">Syngdu 2</div>
-        </div>
-        <div class="photo-item tall bg-film-3">
-          <div class="photo-label">Super Mario Bros</div>
-        </div>
-        <div class="photo-item tall bg-film-4">
-          <div class="photo-label">Wicked</div>
-        </div>
+        <div class="feature-desc">Tækni og aðstaða fyrir útvarpsefni og hlaðvarp í hæsta gæðaflokki.</div>
       </div>
     </div>
 
@@ -121,57 +95,66 @@ import Layout from '../layouts/Layout.astro';
   .cta-btn:hover { background: rgba(255,255,255,0.15); }
 
   .content { padding: 48px 32px; }
+  .loading { font-size: 14px; color: var(--gray-60); }
 
-  /* ── STUDIO SECTION ── */
-  .studio-section { margin-bottom: 48px; }
-  .studio-intro { margin-bottom: 28px; }
-  .talsetning-intro { margin-bottom: 28px; }
-
+  .section-intro { margin-bottom: 28px; max-width: 720px; }
+  .eyebrow-red {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--red); margin-bottom: 10px;
+  }
   h2 {
-    font-size: 24px; font-weight: 700; letter-spacing: -0.01em;
-    margin-bottom: 12px;
+    font-size: 26px; font-weight: 700; letter-spacing: -0.01em;
+    margin-bottom: 14px;
   }
-  .studio-intro p,
-  .talsetning-intro p {
-    font-size: 14px; color: var(--gray-60); line-height: 1.75;
-    max-width: 640px; margin-bottom: 10px;
+  .section-intro p { font-size: 14px; color: var(--gray-60); line-height: 1.75; }
+
+  /* Injected by the script, so :global() lets the styles reach it. */
+
+  .content :global(.dubbed-grid) {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px;
+    margin-bottom: 8px;
+  }
+  .content :global(.dubbed-card) {
+    border-radius: 8px; overflow: hidden; background: #1a1a1a;
+    aspect-ratio: 2/3; position: relative;
+    border: 0.5px solid var(--gray-20);
+  }
+  .content :global(.dubbed-card img) {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .content :global(.dubbed-title) {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 24px 12px 12px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+    font-size: 12px; font-weight: 600; color: #fff;
   }
 
-  /* ── PHOTO GRID ── */
-  .photo-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+  .content :global(.studio-grid) {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    margin-bottom: 8px;
   }
-  .photo-item {
-    aspect-ratio: 4/3; border-radius: 6px;
-    position: relative; overflow: hidden;
-    cursor: pointer;
+  .content :global(.studio-card) {
+    border-radius: 8px; overflow: hidden; background: #1a1a1a;
+    aspect-ratio: 4/3; position: relative;
   }
-  .photo-label {
-    position: absolute; bottom: 0; left: 0; right: 0;
+  .content :global(.studio-card img) {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .content :global(.studio-caption) {
+    position: absolute; left: 0; right: 0; bottom: 0;
     padding: 28px 14px 12px;
     background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
     font-size: 11px; font-weight: 600; color: #fff;
-    letter-spacing: 0.06em; text-transform: uppercase;
+    letter-spacing: 0.05em; text-transform: uppercase;
     opacity: 0; transition: opacity 0.2s;
   }
-  .photo-item:hover .photo-label { opacity: 1; }
+  .content :global(.studio-card:hover .studio-caption) { opacity: 1; }
 
-  /* studio photo placeholder colours */
-  .bg-studio-1 { background: linear-gradient(145deg, #1a1a2e, #16213e); }
-  .bg-studio-2 { background: linear-gradient(145deg, #2a2a2a, #1a1a1a); }
-  .bg-studio-3 { background: linear-gradient(145deg, #1e2a1e, #111811); }
-  .bg-studio-4 { background: linear-gradient(145deg, #2a1a1a, #1a1010); }
+  .divider { height: 1px; background: var(--gray-20); margin: 48px 0; }
 
-  /* film poster placeholder colours */
-  .bg-film-1 { background: linear-gradient(145deg, #f59e0b, #d97706); }
-  .bg-film-2 { background: linear-gradient(145deg, #3b82f6, #1d4ed8); }
-  .bg-film-3 { background: linear-gradient(145deg, #ef4444, #b91c1c); }
-  .bg-film-4 { background: linear-gradient(145deg, #10b981, #047857); }
-
-  /* ── FEATURES ── */
   .feature-grid {
     display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 16px; margin-bottom: 48px;
+    gap: 16px; margin-top: 48px;
   }
   .feature-card {
     background: var(--gray-10);
@@ -181,11 +164,6 @@ import Layout from '../layouts/Layout.astro';
   .feature-name { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
   .feature-desc { font-size: 13px; color: var(--gray-60); line-height: 1.6; }
 
-  .divider { height: 1px; background: var(--gray-20); margin-bottom: 48px; }
-
-  .talsetning-section { margin-bottom: 0; }
-
-  /* ── CTA ── */
   .cta-strip {
     margin: 48px 32px;
     background: var(--gray-10); border-radius: 8px;
@@ -205,11 +183,65 @@ import Layout from '../layouts/Layout.astro';
   }
   .cta-btn-red:hover { background: var(--red); color: var(--white); }
 
+  @media (max-width: 1100px) {
+    .content :global(.dubbed-grid) { grid-template-columns: repeat(5, 1fr); }
+  }
+  @media (max-width: 900px) {
+    .content :global(.dubbed-grid) { grid-template-columns: repeat(4, 1fr); }
+    .content :global(.studio-grid) { grid-template-columns: repeat(2, 1fr); }
+    .feature-grid { grid-template-columns: repeat(2, 1fr); }
+  }
   @media (max-width: 700px) {
     .page-hero { grid-template-columns: 1fr; padding: 48px 20px; }
     h1 { font-size: 32px; }
-    .photo-grid { grid-template-columns: repeat(2, 1fr); }
-    .feature-grid { grid-template-columns: repeat(2, 1fr); }
+    .content { padding: 40px 20px; }
+    .content :global(.dubbed-grid) { grid-template-columns: repeat(3, 1fr); }
     .cta-strip { flex-direction: column; align-items: flex-start; margin: 32px 20px; }
   }
 </style>
+
+<script>
+  var PID = 'dc8pwssq';
+  var DS = 'production';
+  var Q = encodeURIComponent('{"dubbed": *[_type == "dubbedFilm"] | order(_createdAt asc){title, poster}, "photos": *[_type == "studioPhoto"] | order(_createdAt asc){caption, image}}');
+  var API = 'https://' + PID + '.api.sanity.io/v2024-01-01/data/query/' + DS + '?query=' + Q;
+
+  function imgUrl(ref, w, h) {
+    var id = ref.asset._ref.replace('image-', '').replace(/-([a-z]+)$/, '.$1');
+    var url = 'https://cdn.sanity.io/images/' + PID + '/' + DS + '/' + id + '?w=' + w;
+    if (h) url += '&h=' + h + '&fit=crop';
+    return url;
+  }
+  function esc(s) { return s ? String(s) : ''; }
+
+  function dubbedCard(f) {
+    return '<div class="dubbed-card">' +
+      (f.poster ? '<img src="' + imgUrl(f.poster, 400, 600) + '" alt="' + esc(f.title) + '">' : '') +
+      '<div class="dubbed-title">' + esc(f.title) + '</div>' +
+    '</div>';
+  }
+  function studioCard(p) {
+    return '<div class="studio-card">' +
+      (p.image ? '<img src="' + imgUrl(p.image, 600, 450) + '" alt="' + esc(p.caption) + '">' : '') +
+      (p.caption ? '<div class="studio-caption">' + esc(p.caption) + '</div>' : '') +
+    '</div>';
+  }
+
+  fetch(API)
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      var d = data.result || {};
+      var dubbed = d.dubbed || [];
+      var photos = d.photos || [];
+
+      var dr = document.getElementById('dubbed-root');
+      dr.innerHTML = dubbed.length
+        ? dubbed.map(dubbedCard).join('')
+        : '<p class="loading">Engar talsettar myndir skráðar ennþá.</p>';
+
+      var sr = document.getElementById('studio-root');
+      sr.innerHTML = photos.length
+        ? photos.map(studioCard).join('')
+        : '<p class="loading">Engar hljóðversmyndir skráðar ennþá.</p>';
+    });
+</script>
