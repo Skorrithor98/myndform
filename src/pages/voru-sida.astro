@@ -17,59 +17,41 @@ import Layout from '../layouts/Layout.astro';
 
   /* Injected by the script, so :global() lets the styles reach it. */
 
-  .product-page :global(.back-bar) {
-    max-width: 1600px; margin: 0; padding: 28px 48px 0;
-  }
+  .product-page :global(.back-bar) { max-width: none; margin: 0; padding: 28px 48px 0; }
   .product-page :global(.back-link) {
     display: inline-block; font-size: 13px; color: var(--gray-60);
     text-decoration: none; transition: color 0.15s;
   }
   .product-page :global(.back-link:hover) { color: var(--red); }
 
-  .product-page :global(.hero) {
-    background: #1a1a1d; padding: 44px 0 40px; margin-top: 20px;
-  }
-  .product-page :global(.hero-inner) {
-    max-width: 1600px; margin: 0; padding: 0 48px;
-  }
+  .product-page :global(.hero) { background: #1a1a1d; padding: 44px 0 40px; margin-top: 20px; }
+  .product-page :global(.hero-inner) { max-width: none; margin: 0; padding: 0 48px; }
   .product-page :global(.hero-eyebrow) {
     font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
     text-transform: uppercase; color: #ff5a5a; margin-bottom: 12px;
   }
   .product-page :global(.hero h1) {
     font-size: 40px; font-weight: 700; color: #fff;
-    line-height: 1.05; letter-spacing: -0.01em; text-transform: uppercase;
-    margin-bottom: 14px;
+    line-height: 1.05; letter-spacing: -0.01em; text-transform: uppercase; margin-bottom: 14px;
   }
-  .product-page :global(.hero-tagline) {
-    font-size: 16px; color: rgba(255,255,255,0.85);
-    line-height: 1.6; max-width: 640px;
-  }
-  .product-page :global(.hero-badges) {
-    display: flex; flex-wrap: wrap; gap: 9px; margin-top: 20px;
-  }
+  .product-page :global(.hero-tagline) { font-size: 16px; color: rgba(255,255,255,0.85); line-height: 1.6; max-width: 640px; }
+  .product-page :global(.hero-badges) { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 20px; }
   .product-page :global(.hero-badge) {
     display: inline-flex; align-items: center; gap: 5px;
     background: rgba(255,255,255,0.14); color: #fff;
-    font-size: 12px; font-weight: 600;
-    padding: 6px 14px; border-radius: 999px;
+    font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 999px;
   }
 
-  .product-page :global(.body) {
-    max-width: 1600px; margin: 0; padding: 44px 48px 0;
-  }
+  .product-page :global(.body) { max-width: none; margin: 0; padding: 44px 48px 0; }
   .product-page :global(.body-grid) {
     display: grid; grid-template-columns: minmax(360px, 460px) 1fr;
     gap: 56px; align-items: stretch;
   }
   .product-page :global(.image-col) {
     background: var(--gray-10); border-radius: 14px;
-    padding: 36px; display: flex; align-items: center; justify-content: center;
-    min-height: 440px;
+    padding: 36px; display: flex; align-items: center; justify-content: center; min-height: 440px;
   }
-  .product-page :global(.image-col img) {
-    max-width: 100%; max-height: 100%; object-fit: contain; display: block;
-  }
+  .product-page :global(.image-col img) { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
 
   .product-page :global(.spec-col) { display: flex; flex-direction: column; }
   .product-page :global(.spec-col > *:last-child) { margin-bottom: 0; }
@@ -78,13 +60,10 @@ import Layout from '../layouts/Layout.astro';
     background: var(--gray-10); border-radius: 12px;
     padding: 22px 24px; margin-bottom: 22px; max-width: 460px;
   }
-  .product-page :global(.nutrition-title) {
-    font-size: 14px; font-weight: 700; margin-bottom: 14px;
-  }
+  .product-page :global(.nutrition-title) { font-size: 14px; font-weight: 700; margin-bottom: 14px; }
   .product-page :global(.nutrition-row) {
     display: flex; justify-content: space-between;
-    font-size: 14px; padding: 8px 0;
-    border-bottom: 1px solid var(--gray-20);
+    font-size: 14px; padding: 8px 0; border-bottom: 1px solid var(--gray-20);
   }
   .product-page :global(.nutrition-row:last-child) { border-bottom: none; }
   .product-page :global(.nutrition-row .nv) { font-weight: 600; }
@@ -92,16 +71,12 @@ import Layout from '../layouts/Layout.astro';
 
   .product-page :global(.ingredients-card) {
     background: #f7f1e8; border-radius: 12px;
-    padding: 24px 26px; margin-bottom: 22px; max-width: 620px;
-    flex: 1;
+    padding: 24px 26px; margin-bottom: 22px; max-width: 620px; flex: 1;
   }
   .product-page :global(.ingredients-card h3) {
-    font-size: 17px; font-weight: 700; color: #2a2419;
-    margin-bottom: 10px; letter-spacing: -0.01em;
+    font-size: 17px; font-weight: 700; color: #2a2419; margin-bottom: 10px; letter-spacing: -0.01em;
   }
-  .product-page :global(.ingredients-text) {
-    font-size: 15px; color: #4a4234; line-height: 1.75; white-space: pre-line;
-  }
+  .product-page :global(.ingredients-text) { font-size: 15px; color: #4a4234; line-height: 1.75; white-space: pre-line; }
 
   .product-page :global(.storage-chip) {
     display: inline-flex; align-items: center; gap: 9px;
@@ -112,34 +87,26 @@ import Layout from '../layouts/Layout.astro';
   .product-page :global(.storage-chip svg) { flex-shrink: 0; }
 
   .product-page :global(.order-row) {
-    max-width: 1600px; margin: 36px 0 0; padding: 32px 48px 80px;
+    max-width: none; margin: 36px 0 0; padding: 32px 48px 80px;
     border-top: 1px solid var(--gray-20);
   }
   .product-page :global(.order-btn) {
     display: inline-block; background: var(--red); color: #fff;
     padding: 14px 28px; border-radius: 5px;
     font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
-    text-transform: uppercase; text-decoration: none;
-    transition: background 0.15s;
+    text-transform: uppercase; text-decoration: none; transition: background 0.15s;
   }
   .product-page :global(.order-btn:hover) { background: var(--red-dark); }
-  .product-page :global(.order-note) {
-    font-size: 13px; color: var(--gray-60); margin-top: 12px;
-  }
+  .product-page :global(.order-note) { font-size: 13px; color: var(--gray-60); margin-top: 12px; }
 
-  .product-page :global(.related) {
-    max-width: 1600px; margin: 0; padding: 0 48px 80px;
-  }
+  .product-page :global(.related) { max-width: none; margin: 0; padding: 0 48px 80px; }
   .product-page :global(.related-label) {
     font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
     text-transform: uppercase; color: #aaa; margin-bottom: 22px;
   }
-  .product-page :global(.related-grid) {
-    display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px;
-  }
+  .product-page :global(.related-grid) { display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; }
   .product-page :global(.related-card) {
-    text-decoration: none; color: inherit; display: block;
-    transition: transform 0.15s;
+    text-decoration: none; color: inherit; display: block; transition: transform 0.15s;
   }
   .product-page :global(.related-card:hover) { transform: translateY(-3px); }
   .product-page :global(.related-thumb) {
@@ -148,19 +115,12 @@ import Layout from '../layouts/Layout.astro';
     display: flex; align-items: center; justify-content: center;
     padding: 16px; transition: box-shadow 0.15s;
   }
-  .product-page :global(.related-card:hover .related-thumb) {
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-  }
-  .product-page :global(.related-thumb img) {
-    max-width: 100%; max-height: 100%; object-fit: contain;
-  }
-  .product-page :global(.related-name) {
-    font-size: 13px; font-weight: 600; line-height: 1.3; text-align: center;
-  }
+  .product-page :global(.related-card:hover .related-thumb) { box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+  .product-page :global(.related-thumb img) { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .product-page :global(.related-name) { font-size: 13px; font-weight: 600; line-height: 1.3; text-align: center; }
 
-  @media (max-width: 1200px) {
-    .product-page :global(.related-grid) { grid-template-columns: repeat(4, 1fr); }
-  }
+  @media (max-width: 1500px) { .product-page :global(.related-grid) { grid-template-columns: repeat(5, 1fr); } }
+  @media (max-width: 1200px) { .product-page :global(.related-grid) { grid-template-columns: repeat(4, 1fr); } }
   @media (max-width: 1000px) {
     .product-page :global(.body-grid) { grid-template-columns: 1fr; gap: 32px; }
     .product-page :global(.image-col) { max-width: 420px; min-height: 360px; }

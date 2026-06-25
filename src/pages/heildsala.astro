@@ -14,8 +14,8 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
     <div class="content">
-      <div id="brands-root">
-        <p class="loading">Sæki vörumerki…</p>
+      <div id="catalog-root">
+        <p class="loading">Sæki vörur…</p>
       </div>
     </div>
 
@@ -35,19 +35,13 @@ import Layout from '../layouts/Layout.astro';
   .heildsala-page { padding-bottom: 0; }
 
   .hero { background: #1a1a1d; padding: 56px 0; }
-  .hero-inner { max-width: 1600px; margin: 0; padding: 0 48px; }
+  .hero-inner { max-width: none; margin: 0; padding: 0 48px; }
   .hero-eyebrow {
     font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
     text-transform: uppercase; color: #ff5a5a; margin-bottom: 14px;
   }
-  .hero h1 {
-    font-size: 46px; font-weight: 700; color: #fff;
-    line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 18px;
-  }
-  .hero p {
-    font-size: 15px; color: rgba(255,255,255,0.75);
-    line-height: 1.75; max-width: 680px; margin-bottom: 26px;
-  }
+  .hero h1 { font-size: 46px; font-weight: 700; color: #fff; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 18px; }
+  .hero p { font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.75; max-width: 680px; margin-bottom: 26px; }
   .cta-btn {
     display: inline-block;
     border: 2px solid rgba(255,255,255,0.85); color: #fff;
@@ -57,7 +51,7 @@ import Layout from '../layouts/Layout.astro';
   }
   .cta-btn:hover { background: rgba(255,255,255,0.15); }
 
-  .content { max-width: 1600px; margin: 0; padding: 52px 48px; }
+  .content { max-width: none; margin: 0; padding: 52px 48px; }
   .loading { font-size: 14px; color: var(--gray-60); }
 
   /* Injected by the script, so :global() lets the styles reach it. */
@@ -70,9 +64,26 @@ import Layout from '../layouts/Layout.astro';
     padding-bottom: 14px; border-bottom: 1px solid var(--gray-20);
   }
 
-  .content :global(.brand-grid) {
-    display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px;
+  .content :global(.bordspil-banner) {
+    display: flex; align-items: center; justify-content: space-between; gap: 32px;
+    text-decoration: none; color: inherit;
+    background: var(--gray-10); border-radius: 14px;
+    padding: 28px 32px; transition: transform 0.15s, box-shadow 0.15s;
   }
+  .content :global(.bordspil-banner:hover) {
+    transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  }
+  .content :global(.banner-title) { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+  .content :global(.banner-sub) { font-size: 14px; color: var(--gray-60); line-height: 1.5; margin-bottom: 12px; }
+  .content :global(.banner-link) { font-size: 13px; font-weight: 600; color: var(--red); }
+  .content :global(.banner-thumbs) { display: flex; gap: 12px; flex-shrink: 0; }
+  .content :global(.banner-thumb) {
+    width: 84px; height: 84px; background: #fff; border: 1px solid var(--gray-20);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 10px;
+  }
+  .content :global(.banner-thumb img) { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+  .content :global(.brand-grid) { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; }
   .content :global(.brand-card) {
     display: flex; flex-direction: column;
     text-decoration: none; color: inherit;
@@ -81,26 +92,18 @@ import Layout from '../layouts/Layout.astro';
     transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
   }
   .content :global(.brand-card:hover) {
-    border-color: var(--gray-60);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    border-color: var(--gray-60); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.06);
   }
   .content :global(.brand-logo-wrap) {
     aspect-ratio: 3/2; background: var(--gray-10);
     display: flex; align-items: center; justify-content: center; padding: 30px;
   }
-  .content :global(.brand-logo-wrap img) {
-    max-width: 100%; max-height: 100%; object-fit: contain; display: block;
-  }
+  .content :global(.brand-logo-wrap img) { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
   .content :global(.brand-meta) { padding: 16px 18px 18px; }
-  .content :global(.brand-name) {
-    font-size: 15px; font-weight: 600; margin-bottom: 4px;
-  }
-  .content :global(.brand-tagline) {
-    font-size: 12px; color: var(--gray-60); line-height: 1.45;
-  }
+  .content :global(.brand-name) { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .content :global(.brand-tagline) { font-size: 12px; color: var(--gray-60); line-height: 1.45; }
 
-  .cta-strip-wrap { max-width: 1600px; margin: 0; padding: 0 48px 64px; }
+  .cta-strip-wrap { max-width: none; margin: 0; padding: 0 48px 64px; }
   .cta-strip {
     background: var(--gray-10); border-radius: 12px; padding: 30px 34px;
     display: flex; align-items: center; justify-content: space-between; gap: 24px;
@@ -117,17 +120,18 @@ import Layout from '../layouts/Layout.astro';
   }
   .cta-btn-red:hover { background: var(--red); color: var(--white); }
 
-  @media (max-width: 1200px) {
-    .content :global(.brand-grid) { grid-template-columns: repeat(4, 1fr); }
-  }
+  @media (max-width: 1500px) { .content :global(.brand-grid) { grid-template-columns: repeat(5, 1fr); } }
+  @media (max-width: 1200px) { .content :global(.brand-grid) { grid-template-columns: repeat(4, 1fr); } }
   @media (max-width: 1000px) {
     .content :global(.brand-grid) { grid-template-columns: repeat(3, 1fr); }
+    .content :global(.banner-thumbs) { display: none; }
   }
   @media (max-width: 700px) {
     .hero { padding: 48px 0; }
     .hero h1 { font-size: 34px; }
     .hero-inner, .content, .cta-strip-wrap { padding-left: 20px; padding-right: 20px; }
     .content :global(.brand-grid) { grid-template-columns: repeat(2, 1fr); }
+    .content :global(.bordspil-banner) { flex-direction: column; align-items: flex-start; }
     .cta-strip { flex-direction: column; align-items: flex-start; }
   }
 </style>
@@ -135,14 +139,8 @@ import Layout from '../layouts/Layout.astro';
 <script>
   var PID = 'dc8pwssq';
   var DS = 'production';
-  var Q = encodeURIComponent('*[_type == "brand"] | order(name asc)');
+  var Q = encodeURIComponent('{"brands": *[_type == "brand"] | order(name asc), "games": *[_type == "boardgame"] | order(name asc)}');
   var API = 'https://' + PID + '.api.sanity.io/v2024-01-01/data/query/' + DS + '?query=' + Q;
-
-  var CATEGORIES = [
-    { value: 'bordspil', title: 'Borðspil' },
-    { value: 'leikfong', title: 'Leikföng' },
-    { value: 'matvara', title: 'Mat- og drykkjarvörur' },
-  ];
 
   function imgUrl(ref, w) {
     var id = ref.asset._ref.replace('image-', '').replace(/-([a-z]+)$/, '.$1');
@@ -165,26 +163,47 @@ import Layout from '../layouts/Layout.astro';
   fetch(API)
     .then(function(r) { return r.json(); })
     .then(function(data) {
-      var brands = data.result || [];
-      var root = document.getElementById('brands-root');
+      var res = data.result || {};
+      var brands = res.brands || [];
+      var games = res.games || [];
+      var root = document.getElementById('catalog-root');
+      var html = '';
 
-      if (!brands.length) {
-        root.innerHTML = '<p class="loading">Engin vörumerki skráð ennþá.</p>';
-        return;
+      if (games.length) {
+        var thumbs = games.slice(0, 4).map(function(g) {
+          return '<div class="banner-thumb">' +
+            (g.image ? '<img src="' + imgUrl(g.image, 200) + '" alt="' + esc(g.name) + '">' : '') +
+          '</div>';
+        }).join('');
+        html += '<div class="category-block">' +
+          '<div class="category-title">Borðspil</div>' +
+          '<a class="bordspil-banner" href="/bordspil">' +
+            '<div class="banner-text">' +
+              '<div class="banner-title">' + games.length + ' borðspil frá ýmsum framleiðendum</div>' +
+              '<div class="banner-sub">Fjölbreytt úrval fyrir alla aldurshópa — partýspil, fjölskylduspil og barnaspil.</div>' +
+              '<span class="banner-link">Skoða öll borðspil →</span>' +
+            '</div>' +
+            '<div class="banner-thumbs">' + thumbs + '</div>' +
+          '</a>' +
+        '</div>';
       }
 
-      var html = '';
-      CATEGORIES.forEach(function(cat) {
-        var inCat = brands.filter(function(b) { return b.category === cat.value; });
-        if (!inCat.length) return;
+      var toys = brands.filter(function(b) { return b.category === 'leikfong'; });
+      if (toys.length) {
         html += '<div class="category-block">' +
-          '<div class="category-title">' + cat.title + '</div>' +
-          '<div class="brand-grid">' +
-            inCat.map(brandCard).join('') +
-          '</div>' +
+          '<div class="category-title">Leikföng</div>' +
+          '<div class="brand-grid">' + toys.map(brandCard).join('') + '</div>' +
         '</div>';
-      });
+      }
 
-      root.innerHTML = html;
+      var food = brands.filter(function(b) { return b.category === 'matvara'; });
+      if (food.length) {
+        html += '<div class="category-block">' +
+          '<div class="category-title">Mat- og drykkjarvörur</div>' +
+          '<div class="brand-grid">' + food.map(brandCard).join('') + '</div>' +
+        '</div>';
+      }
+
+      root.innerHTML = html || '<p class="loading">Engar vörur skráðar ennþá.</p>';
     });
 </script>
