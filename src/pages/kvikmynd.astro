@@ -1,0 +1,261 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Kvikmynd">
+  <div class="film-detail">
+    <div class="backdrop" id="backdrop"></div>
+    <div class="backdrop-shade"></div>
+    <div class="detail-inner">
+      <a class="back-link" href="/films">← Til baka í kvikmyndir</a>
+      <div id="detail-content">
+        <p class="detail-empty">Sæki kvikmynd…</p>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .film-detail {
+    position: relative;
+    background: #0f0f11;
+    color: #fff;
+    min-height: 82vh;
+    overflow: hidden;
+  }
+  .backdrop {
+    position: absolute; top: -60px; left: -60px; right: -60px; height: 560px;
+    background-size: cover; background-position: center top;
+    filter: blur(55px) saturate(1.2) brightness(0.7);
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 28%, transparent 82%);
+    mask-image: linear-gradient(180deg, #000 0%, #000 28%, transparent 82%);
+  }
+  .backdrop-shade {
+    position: absolute; top: 0; left: 0; right: 0; height: 340px;
+    background: linear-gradient(180deg, rgba(15,15,17,0.5) 0%, rgba(15,15,17,0) 100%);
+  }
+  .detail-inner {
+    position: relative; z-index: 1;
+    padding: 40px 32px 72px;
+  }
+
+  .back-link {
+    display: inline-block; font-size: 13px; color: rgba(255,255,255,0.55);
+    text-decoration: none; margin-bottom: 28px; transition: color 0.15s;
+  }
+  .back-link:hover { color: #fff; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Injected by the script, so :global() lets the styles reach it. */
+
+  .film-detail :global(.detail-empty) { font-size: 14px; color: rgba(255,255,255,0.6); }
+  .film-detail :global(.detail-empty a) { color: var(--red); }
+
+  .film-detail :global(.detail-grid) {
+    display: grid;
+    grid-template-columns: calc((100vw - 120px) / 5) 1fr;
+    gap: 44px; align-items: start;
+    animation: fadeUp 0.5s ease both;
+  }
+  .film-detail :global(.detail-poster) {
+    width: 100%; aspect-ratio: 2/3; border-radius: 10px;
+    overflow: hidden; background: #1a1a1a;
+    border: 0.5px solid rgba(255,255,255,0.12);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+  }
+  .film-detail :global(.detail-poster img) {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+
+  .film-detail :global(.detail-info) { min-width: 0; max-width: 680px; }
+  .film-detail :global(.detail-eyebrow) {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--red); margin-bottom: 10px;
+  }
+  .film-detail :global(.detail-title-row) {
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+  .film-detail :global(.detail-title-row h1) {
+    font-size: 38px; font-weight: 700; letter-spacing: -0.02em;
+    line-height: 1.05; color: #fff;
+  }
+  .film-detail :global(.status-pill) {
+    font-size: 11px; color: rgba(255,255,255,0.7);
+    border: 0.5px solid rgba(255,255,255,0.28); border-radius: 999px;
+    padding: 4px 12px; white-space: nowrap;
+  }
+
+  .film-detail :global(.chips) {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px;
+  }
+  .film-detail :global(.chip) {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 12px; border-radius: 999px;
+    background: rgba(255,255,255,0.07); border: 0.5px solid rgba(255,255,255,0.14);
+    color: rgba(255,255,255,0.85); font-size: 12px;
+  }
+  .film-detail :global(.chip-age) {
+    padding: 6px 13px; border-radius: 999px;
+    background: var(--red); color: #fff; font-size: 12px; font-weight: 600;
+  }
+
+  .film-detail :global(.meta-rows) {
+    margin: 4px 0 0; border-top: 0.5px solid rgba(255,255,255,0.14);
+  }
+  .film-detail :global(.meta-row) {
+    display: grid; grid-template-columns: 170px 1fr; gap: 16px;
+    padding: 13px 0; border-bottom: 0.5px solid rgba(255,255,255,0.1);
+  }
+  .film-detail :global(.meta-label) {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.05em;
+    text-transform: uppercase; color: rgba(255,255,255,0.45); padding-top: 2px;
+  }
+  .film-detail :global(.meta-value) {
+    font-size: 14px; color: rgba(255,255,255,0.92); line-height: 1.5;
+  }
+
+  .film-detail :global(.detail-desc-label) {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.05em;
+    text-transform: uppercase; color: rgba(255,255,255,0.45);
+    margin: 26px 0 8px;
+  }
+  .film-detail :global(.detail-desc) {
+    font-size: 14px; color: rgba(255,255,255,0.82); line-height: 1.8;
+    white-space: pre-line; margin-bottom: 16px;
+  }
+  .film-detail :global(.detail-note) {
+    font-size: 13px; color: rgba(255,255,255,0.55); font-style: italic;
+  }
+
+  .film-detail :global(.trailer-label) {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: rgba(255,255,255,0.45);
+    margin: 30px 0 12px;
+  }
+  .film-detail :global(.trailer-wrap) {
+    position: relative; width: 100%; max-width: 600px;
+    aspect-ratio: 16 / 9; height: auto;
+    border-radius: 10px; overflow: hidden; background: #000;
+    border: 0.5px solid rgba(255,255,255,0.1);
+  }
+  .film-detail :global(.trailer-wrap iframe) {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
+  }
+
+  @media (max-width: 1100px) {
+    .film-detail :global(.detail-grid) { grid-template-columns: calc((100vw - 106px) / 4) 1fr; }
+  }
+  @media (max-width: 900px) {
+    .film-detail :global(.detail-grid) { grid-template-columns: calc((100vw - 92px) / 3) 1fr; }
+  }
+  @media (max-width: 760px) {
+    .detail-inner { padding: 32px 20px 56px; }
+    .film-detail :global(.detail-grid) { grid-template-columns: 1fr; gap: 24px; }
+    .film-detail :global(.detail-poster) { max-width: 240px; }
+    .film-detail :global(.detail-title-row h1) { font-size: 28px; }
+    .film-detail :global(.meta-row) { grid-template-columns: 120px 1fr; gap: 12px; }
+  }
+</style>
+
+<script>
+  var PID = 'dc8pwssq';
+  var DS = 'production';
+
+  function imgUrl(ref, w) {
+    var id = ref.asset._ref.replace('image-', '').replace(/-([a-z]+)$/, '.$1');
+    return 'https://cdn.sanity.io/images/' + PID + '/' + DS + '/' + id + '?w=' + w;
+  }
+  function fmtDate(s) {
+    if (!s) return '';
+    return new Date(s).toLocaleDateString('is-IS', {day:'numeric', month:'long', year:'numeric'});
+  }
+  function ageLabel(v) {
+    if (!v) return '';
+    if (v === 'L') return 'Leyfð öllum';
+    return v + ' ára';
+  }
+  function statusLabel(s) {
+    if (s === 'now') return 'Í bíó núna';
+    if (s === 'soon') return 'Væntanlegt';
+    if (s === 'archive') return 'Eldri mynd';
+    return '';
+  }
+  function ytEmbed(url) {
+    if (!url) return '';
+    var id = '';
+    var m = url.match(/[?&]v=([^&]+)/);
+    if (m) id = m[1];
+    if (!id) { var m2 = url.match(/youtu\.be\/([^?&]+)/); if (m2) id = m2[1]; }
+    if (!id) { var m3 = url.match(/embed\/([^?&]+)/); if (m3) id = m3[1]; }
+    return id ? 'https://www.youtube.com/embed/' + id : '';
+  }
+  function esc(s) { return s ? String(s) : ''; }
+  function row(label, value) {
+    if (!value) return '';
+    return '<div class="meta-row"><div class="meta-label">' + label + '</div><div class="meta-value">' + value + '</div></div>';
+  }
+
+  var slug = new URLSearchParams(window.location.search).get('slug');
+  var box = document.getElementById('detail-content');
+
+  if (!slug) {
+    box.innerHTML = '<p class="detail-empty">Engin kvikmynd valin. <a href="/films">Til baka í lista</a>.</p>';
+  } else {
+    var Q = encodeURIComponent('*[_type == "film" && slug.current == "' + slug + '"][0]');
+    var API = 'https://' + PID + '.api.sanity.io/v2024-01-01/data/query/' + DS + '?query=' + Q;
+    fetch(API)
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var f = data.result;
+        if (!f) {
+          box.innerHTML = '<p class="detail-empty">Kvikmyndin fannst ekki. <a href="/films">Til baka í lista</a>.</p>';
+          return;
+        }
+        document.title = f.title + ' · Myndform';
+
+        if (f.poster) {
+          document.getElementById('backdrop').style.backgroundImage = 'url(' + imgUrl(f.poster, 700) + ')';
+        }
+
+        var chips = '';
+        if (f.runtime) chips += '<span class="chip">⏱ ' + f.runtime + ' mín</span>';
+        if (f.releaseDate) chips += '<span class="chip">' + fmtDate(f.releaseDate) + '</span>';
+        if (f.ageRating) chips += '<span class="chip-age">' + ageLabel(f.ageRating) + '</span>';
+
+        var status = statusLabel(f.status);
+        var embed = ytEmbed(f.trailer);
+
+        var trailerBlock = embed
+          ? '<div class="trailer-label">Sýnishorn</div><div class="trailer-wrap"><iframe src="' + embed + '" title="Sýnishorn" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'
+          : '';
+
+        box.innerHTML =
+          '<div class="detail-grid">' +
+            '<div class="detail-poster">' +
+              (f.poster ? '<img src="' + imgUrl(f.poster, 600) + '" alt="' + esc(f.title) + '">' : '') +
+            '</div>' +
+            '<div class="detail-info">' +
+              '<div class="detail-eyebrow">Kvikmyndadreifing</div>' +
+              '<div class="detail-title-row">' +
+                '<h1>' + esc(f.title) + '</h1>' +
+                (status ? '<span class="status-pill">' + status + '</span>' : '') +
+              '</div>' +
+              (chips ? '<div class="chips">' + chips + '</div>' : '') +
+              '<div class="meta-rows">' +
+                row('Leikstjóri', esc(f.director)) +
+                row('Handritshöfundur', esc(f.writer)) +
+                row('Helstu leikarar', esc(f.cast)) +
+              '</div>' +
+              (f.description ? '<div class="detail-desc-label">Lýsing</div><p class="detail-desc">' + esc(f.description) + '</p>' : '') +
+              (f.note ? '<p class="detail-note">' + esc(f.note) + '</p>' : '') +
+              trailerBlock +
+            '</div>' +
+          '</div>';
+      });
+  }
+</script>
