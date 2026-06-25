@@ -1,0 +1,301 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Vara">
+  <div class="product-page">
+    <div id="product-content">
+      <p class="loading">Sæki vöru…</p>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .product-page { padding-bottom: 0; }
+  .loading { font-size: 14px; color: var(--gray-60); padding: 48px 48px; }
+  .loading a { color: var(--red); }
+
+  /* Injected by the script, so :global() lets the styles reach it. */
+
+  .product-page :global(.back-bar) {
+    max-width: 1600px; margin: 0; padding: 28px 48px 0;
+  }
+  .product-page :global(.back-link) {
+    display: inline-block; font-size: 13px; color: var(--gray-60);
+    text-decoration: none; transition: color 0.15s;
+  }
+  .product-page :global(.back-link:hover) { color: var(--red); }
+
+  .product-page :global(.hero) {
+    background: #1a1a1d; padding: 44px 0 40px; margin-top: 20px;
+  }
+  .product-page :global(.hero-inner) {
+    max-width: 1600px; margin: 0; padding: 0 48px;
+  }
+  .product-page :global(.hero-eyebrow) {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #ff5a5a; margin-bottom: 12px;
+  }
+  .product-page :global(.hero h1) {
+    font-size: 40px; font-weight: 700; color: #fff;
+    line-height: 1.05; letter-spacing: -0.01em; text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .product-page :global(.hero-tagline) {
+    font-size: 16px; color: rgba(255,255,255,0.85);
+    line-height: 1.6; max-width: 640px;
+  }
+  .product-page :global(.hero-badges) {
+    display: flex; flex-wrap: wrap; gap: 9px; margin-top: 20px;
+  }
+  .product-page :global(.hero-badge) {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: rgba(255,255,255,0.14); color: #fff;
+    font-size: 12px; font-weight: 600;
+    padding: 6px 14px; border-radius: 999px;
+  }
+
+  .product-page :global(.body) {
+    max-width: 1600px; margin: 0; padding: 44px 48px 0;
+  }
+  .product-page :global(.body-grid) {
+    display: grid; grid-template-columns: minmax(360px, 460px) 1fr;
+    gap: 56px; align-items: stretch;
+  }
+  .product-page :global(.image-col) {
+    background: var(--gray-10); border-radius: 14px;
+    padding: 36px; display: flex; align-items: center; justify-content: center;
+    min-height: 440px;
+  }
+  .product-page :global(.image-col img) {
+    max-width: 100%; max-height: 100%; object-fit: contain; display: block;
+  }
+
+  .product-page :global(.spec-col) { display: flex; flex-direction: column; }
+  .product-page :global(.spec-col > *:last-child) { margin-bottom: 0; }
+
+  .product-page :global(.nutrition) {
+    background: var(--gray-10); border-radius: 12px;
+    padding: 22px 24px; margin-bottom: 22px; max-width: 460px;
+  }
+  .product-page :global(.nutrition-title) {
+    font-size: 14px; font-weight: 700; margin-bottom: 14px;
+  }
+  .product-page :global(.nutrition-row) {
+    display: flex; justify-content: space-between;
+    font-size: 14px; padding: 8px 0;
+    border-bottom: 1px solid var(--gray-20);
+  }
+  .product-page :global(.nutrition-row:last-child) { border-bottom: none; }
+  .product-page :global(.nutrition-row .nv) { font-weight: 600; }
+  .product-page :global(.nutrition-row.sub .nl) { color: var(--gray-60); padding-left: 14px; }
+
+  .product-page :global(.ingredients-card) {
+    background: #f7f1e8; border-radius: 12px;
+    padding: 24px 26px; margin-bottom: 22px; max-width: 620px;
+    flex: 1;
+  }
+  .product-page :global(.ingredients-card h3) {
+    font-size: 17px; font-weight: 700; color: #2a2419;
+    margin-bottom: 10px; letter-spacing: -0.01em;
+  }
+  .product-page :global(.ingredients-text) {
+    font-size: 15px; color: #4a4234; line-height: 1.75; white-space: pre-line;
+  }
+
+  .product-page :global(.storage-chip) {
+    display: inline-flex; align-items: center; gap: 9px;
+    background: var(--gray-10); color: var(--gray-60);
+    font-size: 13px; padding: 11px 16px; border-radius: 10px;
+    margin-bottom: 22px; align-self: flex-start;
+  }
+  .product-page :global(.storage-chip svg) { flex-shrink: 0; }
+
+  .product-page :global(.order-row) {
+    max-width: 1600px; margin: 36px 0 0; padding: 32px 48px 80px;
+    border-top: 1px solid var(--gray-20);
+  }
+  .product-page :global(.order-btn) {
+    display: inline-block; background: var(--red); color: #fff;
+    padding: 14px 28px; border-radius: 5px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.15s;
+  }
+  .product-page :global(.order-btn:hover) { background: var(--red-dark); }
+  .product-page :global(.order-note) {
+    font-size: 13px; color: var(--gray-60); margin-top: 12px;
+  }
+
+  .product-page :global(.related) {
+    max-width: 1600px; margin: 0; padding: 0 48px 80px;
+  }
+  .product-page :global(.related-label) {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: #aaa; margin-bottom: 22px;
+  }
+  .product-page :global(.related-grid) {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px;
+  }
+  .product-page :global(.related-card) {
+    text-decoration: none; color: inherit; display: block;
+    transition: transform 0.15s;
+  }
+  .product-page :global(.related-card:hover) { transform: translateY(-3px); }
+  .product-page :global(.related-thumb) {
+    aspect-ratio: 1/1; background: var(--gray-10);
+    border-radius: 10px; overflow: hidden; margin-bottom: 10px;
+    display: flex; align-items: center; justify-content: center;
+    padding: 16px; transition: box-shadow 0.15s;
+  }
+  .product-page :global(.related-card:hover .related-thumb) {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+  .product-page :global(.related-thumb img) {
+    max-width: 100%; max-height: 100%; object-fit: contain;
+  }
+  .product-page :global(.related-name) {
+    font-size: 13px; font-weight: 600; line-height: 1.3; text-align: center;
+  }
+
+  @media (max-width: 1200px) {
+    .product-page :global(.related-grid) { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (max-width: 1000px) {
+    .product-page :global(.body-grid) { grid-template-columns: 1fr; gap: 32px; }
+    .product-page :global(.image-col) { max-width: 420px; min-height: 360px; }
+    .product-page :global(.related-grid) { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 700px) {
+    .product-page :global(.hero h1) { font-size: 30px; }
+    .product-page :global(.hero-inner),
+    .product-page :global(.body),
+    .product-page :global(.order-row),
+    .product-page :global(.related),
+    .product-page :global(.back-bar) { padding-left: 20px; padding-right: 20px; }
+    .product-page :global(.related-grid) { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+
+<script>
+  var PID = 'dc8pwssq';
+  var DS = 'production';
+
+  function imgUrl(ref, w) {
+    var id = ref.asset._ref.replace('image-', '').replace(/-([a-z]+)$/, '.$1');
+    return 'https://cdn.sanity.io/images/' + PID + '/' + DS + '/' + id + '?w=' + w;
+  }
+  function esc(s) { return s ? String(s) : ''; }
+
+  function nutRow(label, value, sub) {
+    if (!value) return '';
+    return '<div class="nutrition-row' + (sub ? ' sub' : '') + '">' +
+      '<span class="nl">' + label + '</span><span class="nv">' + esc(value) + '</span></div>';
+  }
+
+  var SNOW = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>';
+
+  var slug = new URLSearchParams(window.location.search).get('slug');
+  var box = document.getElementById('product-content');
+
+  if (!slug) {
+    box.innerHTML = '<p class="loading">Engin vara valin. <a href="/heildsala">Til baka</a>.</p>';
+  } else {
+    var query = '*[_type == "product" && slug.current == "' + slug + '"][0]{' +
+      '..., brand->{name, slug}, ' +
+      '"siblings": *[_type == "product" && references(^.brand._ref) && slug.current != "' + slug + '"] | order(name asc){name, slug, image}' +
+      '}';
+    var API = 'https://' + PID + '.api.sanity.io/v2024-01-01/data/query/' + DS + '?query=' + encodeURIComponent(query);
+    fetch(API)
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var p = data.result;
+        if (!p) {
+          box.innerHTML = '<p class="loading">Varan fannst ekki. <a href="/heildsala">Til baka</a>.</p>';
+          return;
+        }
+        document.title = p.name + ' · Myndform';
+
+        var backHref = '/heildsala';
+        var backText = '← Til baka í heildsölu';
+        if (p.brand && p.brand.slug) {
+          backHref = '/vara?slug=' + p.brand.slug.current;
+          backText = '← Til baka í ' + p.brand.name;
+        }
+
+        var badges = (p.badges && p.badges.length)
+          ? '<div class="hero-badges">' + p.badges.map(function(b) {
+              return '<span class="hero-badge">✓ ' + esc(b) + '</span>';
+            }).join('') + '</div>'
+          : '';
+
+        var n = p.nutrition || {};
+        var hasNutrition = n.energy || n.fat || n.carbs || n.protein || n.salt;
+        var nutritionHtml = hasNutrition
+          ? '<div class="nutrition"><div class="nutrition-title">Næringargildi í 100g</div>' +
+              nutRow('Orka', n.energy) +
+              nutRow('Fita', n.fat) +
+              nutRow('– þar af mettuð fita', n.saturatedFat, true) +
+              nutRow('Kolvetni', n.carbs) +
+              nutRow('– þar af sykurtegundir', n.sugars, true) +
+              nutRow('Trefjar', n.fiber) +
+              nutRow('Prótein', n.protein) +
+              nutRow('Salt', n.salt) +
+            '</div>'
+          : '';
+
+        var ingredients = p.ingredients
+          ? '<div class="ingredients-card"><h3>Innihaldslýsing</h3>' +
+            '<div class="ingredients-text">' + esc(p.ingredients) + '</div></div>'
+          : '';
+
+        var storage = p.storage
+          ? '<div class="storage-chip">' + SNOW + esc(p.storage) + '</div>'
+          : '';
+
+        var mailSubject = encodeURIComponent('Fyrirspurn um ' + p.name +
+          (p.brand ? ' (' + p.brand.name + ')' : ''));
+        var orderLink = 'mailto:myndform@myndform.is?subject=' + mailSubject;
+
+        var related = '';
+        if (p.siblings && p.siblings.length) {
+          var brandName = p.brand ? p.brand.name : '';
+          related = '<div class="related">' +
+            '<div class="related-label">Fleiri vörur frá ' + esc(brandName) + '</div>' +
+            '<div class="related-grid">' +
+              p.siblings.map(function(s) {
+                return '<a class="related-card" href="/voru-sida?slug=' + s.slug.current + '">' +
+                  '<div class="related-thumb">' +
+                    (s.image ? '<img src="' + imgUrl(s.image, 400) + '" alt="' + esc(s.name) + '">' : '') +
+                  '</div>' +
+                  '<div class="related-name">' + esc(s.name) + '</div>' +
+                '</a>';
+              }).join('') +
+            '</div>' +
+          '</div>';
+        }
+
+        box.innerHTML =
+          '<div class="back-bar"><a class="back-link" href="' + backHref + '">' + backText + '</a></div>' +
+          '<div class="hero"><div class="hero-inner">' +
+            (p.brand ? '<div class="hero-eyebrow">Heildsala · ' + esc(p.brand.name) + '</div>' : '<div class="hero-eyebrow">Heildsala</div>') +
+            '<h1>' + esc(p.name) + '</h1>' +
+            (p.tagline ? '<p class="hero-tagline">' + esc(p.tagline) + '</p>' : '') +
+            badges +
+          '</div></div>' +
+          '<div class="body"><div class="body-grid">' +
+            '<div class="image-col">' +
+              (p.image ? '<img src="' + imgUrl(p.image, 800) + '" alt="' + esc(p.name) + '">' : '') +
+            '</div>' +
+            '<div class="spec-col">' +
+              nutritionHtml + ingredients + storage +
+            '</div>' +
+          '</div></div>' +
+          '<div class="order-row">' +
+            '<a class="order-btn" href="' + orderLink + '">Hafðu samband til að panta</a>' +
+            '<div class="order-note">Sendu okkur línu og við sendum verð og nánari upplýsingar.</div>' +
+          '</div>' +
+          related;
+      });
+  }
+</script>

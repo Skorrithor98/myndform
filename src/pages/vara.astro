@@ -1,0 +1,185 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Vörumerki">
+  <div class="brand-page">
+    <div id="brand-content">
+      <p class="loading">Sæki vörumerki…</p>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .brand-page { padding-bottom: 0; }
+  .loading { font-size: 14px; color: var(--gray-60); padding: 48px 48px; }
+  .loading a { color: var(--red); }
+
+  /* Injected by the script, so :global() lets the styles reach it. */
+
+  .brand-page :global(.back-bar) {
+    max-width: 1600px; margin: 0; padding: 28px 48px 0;
+  }
+  .brand-page :global(.back-link) {
+    display: inline-block; font-size: 13px; color: var(--gray-60);
+    text-decoration: none; transition: color 0.15s;
+  }
+  .brand-page :global(.back-link:hover) { color: var(--red); }
+
+  .brand-page :global(.hero) {
+    background: #1a1a1d; padding: 48px 0; margin-top: 20px;
+  }
+  .brand-page :global(.hero-inner) {
+    max-width: 1600px; margin: 0; padding: 0 48px;
+    display: grid; grid-template-columns: 300px 1fr; gap: 56px; align-items: center;
+  }
+  .brand-page :global(.hero-logo) {
+    background: #fff; border-radius: 14px;
+    aspect-ratio: 3/2; display: flex; align-items: center; justify-content: center;
+    padding: 32px;
+  }
+  .brand-page :global(.hero-logo img) {
+    max-width: 100%; max-height: 100%; object-fit: contain;
+  }
+  .brand-page :global(.hero-eyebrow) {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #ff5a5a; margin-bottom: 12px;
+  }
+  .brand-page :global(.hero h1) {
+    font-size: 42px; font-weight: 700; color: #fff;
+    line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 14px;
+  }
+  .brand-page :global(.hero-tagline) {
+    font-size: 17px; color: rgba(255,255,255,0.85);
+    line-height: 1.5; margin-bottom: 18px;
+  }
+  .brand-page :global(.hero-desc) {
+    font-size: 15px; color: rgba(255,255,255,0.7);
+    line-height: 1.75; max-width: 640px; margin-bottom: 20px;
+  }
+  .brand-page :global(.hero-soldat) {
+    font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 24px;
+  }
+  .brand-page :global(.hero-soldat strong) { color: rgba(255,255,255,0.9); font-weight: 600; }
+  .brand-page :global(.order-btn) {
+    display: inline-block; background: var(--red); color: #fff;
+    padding: 13px 26px; border-radius: 5px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; text-decoration: none; transition: background 0.15s;
+  }
+  .brand-page :global(.order-btn:hover) { background: var(--red-dark); }
+
+  .brand-page :global(.body) {
+    max-width: 1600px; margin: 0; padding: 48px 48px 80px;
+  }
+  .brand-page :global(.products-label) {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: #aaa;
+    padding-bottom: 14px; border-bottom: 1px solid var(--gray-20); margin-bottom: 26px;
+  }
+  .brand-page :global(.product-grid) {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px;
+  }
+  .brand-page :global(.product-card) {
+    text-decoration: none; color: inherit; display: block; transition: transform 0.15s;
+  }
+  .brand-page :global(.product-card:hover) { transform: translateY(-3px); }
+  .brand-page :global(.product-thumb) {
+    aspect-ratio: 1/1; background: var(--gray-10);
+    border-radius: 12px; overflow: hidden; margin-bottom: 12px;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px; transition: box-shadow 0.15s;
+  }
+  .brand-page :global(.product-card:hover .product-thumb) {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+  .brand-page :global(.product-thumb img) {
+    max-width: 100%; max-height: 100%; object-fit: contain;
+  }
+  .brand-page :global(.product-name) {
+    font-size: 14px; font-weight: 600; line-height: 1.3; text-align: center;
+  }
+  .brand-page :global(.no-products) {
+    font-size: 14px; color: var(--gray-60);
+  }
+
+  @media (max-width: 1200px) {
+    .brand-page :global(.product-grid) { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (max-width: 1000px) {
+    .brand-page :global(.hero-inner) { grid-template-columns: 1fr; gap: 28px; }
+    .brand-page :global(.hero-logo) { max-width: 260px; }
+    .brand-page :global(.product-grid) { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 700px) {
+    .brand-page :global(.hero h1) { font-size: 32px; }
+    .brand-page :global(.hero-inner),
+    .brand-page :global(.body),
+    .brand-page :global(.back-bar) { padding-left: 20px; padding-right: 20px; }
+    .brand-page :global(.product-grid) { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+
+<script>
+  var PID = 'dc8pwssq';
+  var DS = 'production';
+
+  function imgUrl(ref, w) {
+    var id = ref.asset._ref.replace('image-', '').replace(/-([a-z]+)$/, '.$1');
+    return 'https://cdn.sanity.io/images/' + PID + '/' + DS + '/' + id + '?w=' + w;
+  }
+  function esc(s) { return s ? String(s) : ''; }
+
+  var slug = new URLSearchParams(window.location.search).get('slug');
+  var box = document.getElementById('brand-content');
+
+  if (!slug) {
+    box.innerHTML = '<p class="loading">Ekkert vörumerki valið. <a href="/heildsala">Til baka</a>.</p>';
+  } else {
+    var query = '*[_type == "brand" && slug.current == "' + slug + '"][0]{..., "products": *[_type == "product" && references(^._id)] | order(name asc)}';
+    var API = 'https://' + PID + '.api.sanity.io/v2024-01-01/data/query/' + DS + '?query=' + encodeURIComponent(query);
+    fetch(API)
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var b = data.result;
+        if (!b) {
+          box.innerHTML = '<p class="loading">Vörumerkið fannst ekki. <a href="/heildsala">Til baka</a>.</p>';
+          return;
+        }
+        document.title = b.name + ' · Myndform';
+
+        var mailSubject = encodeURIComponent('Fyrirspurn um ' + b.name);
+        var orderLink = 'mailto:myndform@myndform.is?subject=' + mailSubject;
+
+        var products = (b.products || []).map(function(p) {
+          return '<a class="product-card" href="/voru-sida?slug=' + p.slug.current + '">' +
+            '<div class="product-thumb">' +
+              (p.image ? '<img src="' + imgUrl(p.image, 400) + '" alt="' + esc(p.name) + '">' : '') +
+            '</div>' +
+            '<div class="product-name">' + esc(p.name) + '</div>' +
+          '</a>';
+        }).join('');
+
+        box.innerHTML =
+          '<div class="back-bar"><a class="back-link" href="/heildsala">← Til baka í heildsölu</a></div>' +
+          '<div class="hero"><div class="hero-inner">' +
+            '<div class="hero-logo">' +
+              (b.logo ? '<img src="' + imgUrl(b.logo, 500) + '" alt="' + esc(b.name) + '">' : '') +
+            '</div>' +
+            '<div class="hero-info">' +
+              '<div class="hero-eyebrow">Heildsala</div>' +
+              '<h1>' + esc(b.name) + '</h1>' +
+              (b.tagline ? '<div class="hero-tagline">' + esc(b.tagline) + '</div>' : '') +
+              (b.description ? '<p class="hero-desc">' + esc(b.description) + '</p>' : '') +
+              (b.soldAt ? '<div class="hero-soldat"><strong>Fæst í:</strong> ' + esc(b.soldAt) + '</div>' : '') +
+              '<a class="order-btn" href="' + orderLink + '">Hafðu samband til að panta</a>' +
+            '</div>' +
+          '</div></div>' +
+          '<div class="body">' +
+            (products
+              ? '<div class="products-label">Vörur</div><div class="product-grid">' + products + '</div>'
+              : '<p class="no-products">Engar vörur skráðar ennþá.</p>') +
+          '</div>';
+      });
+  }
+</script>
