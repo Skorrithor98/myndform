@@ -3,20 +3,17 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Hljóðver">
-  <div class="page-hero">
-    <div class="page-hero-left">
-      <div class="eyebrow">Hönnun & framleiðsla</div>
-      <h1>Hljóðver</h1>
-    </div>
-    <div class="page-hero-right">
-      <p>Myndform hefur talsett margar af vinsælustu teiknimyndum síðustu ára og rekur tvö fullbúin hljóðver. Hvort sem þú vilt talsetja efni, taka upp eða leigja hljóðver — við erum klár.</p>
-      <a href="mailto:myndform@myndform.is?subject=Fyrirspurn%20um%20hlj%C3%B3%C3%B0ver" class="cta-btn">Hljóðver til leigu — hafðu samband</a>
+  <div class="site-hero">
+    <div class="site-hero-eyebrow">Hönnun & framleiðsla</div>
+    <h1>Hljóðver</h1>
+    <div class="site-hero-actions">
+      <a href="mailto:myndform@myndform.is?subject=Fyrirspurn%20um%20hlj%C3%B3%C3%B0ver" class="site-hero-btn">Hljóðver til leigu — hafðu samband</a>
     </div>
   </div>
 
   <div class="content">
+    <p class="page-intro">Myndform hefur talsett margar af vinsælustu teiknimyndum síðustu ára og rekur tvö fullbúin hljóðver. Hvort sem þú vilt talsetja efni, taka upp eða leigja hljóðver — við erum klár.</p>
 
-    <!-- ── TALSETNING (leads) ── -->
     <div class="section-intro">
       <div class="eyebrow-red">Talsetning</div>
       <h2>Íslenskar raddir í uppáhaldsmyndunum</h2>
@@ -26,7 +23,6 @@ import Layout from '../layouts/Layout.astro';
 
     <div class="divider"></div>
 
-    <!-- ── STUDIO ── -->
     <div class="section-intro">
       <div class="eyebrow-red">Hljóðverin okkar</div>
       <h2>Tvö fullbúin hljóðver</h2>
@@ -34,7 +30,6 @@ import Layout from '../layouts/Layout.astro';
     </div>
     <div id="studio-root" class="studio-grid"><p class="loading">Sæki myndir…</p></div>
 
-    <!-- ── SERVICES ── -->
     <div class="feature-grid">
       <div class="feature-card">
         <div class="feature-name">Upptökur</div>
@@ -66,36 +61,15 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
-  .page-hero {
-    background: #1a1a1d;
-    padding: 56px 32px;
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 48px; align-items: center;
-  }
-  .eyebrow {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
-    text-transform: uppercase; color: #ff5a5a; margin-bottom: 12px;
-  }
-  h1 {
-    font-size: 44px; font-weight: 700; color: var(--white);
-    line-height: 1.05; letter-spacing: -0.02em;
-  }
-  .page-hero-right p {
-    font-size: 14px; color: rgba(255,255,255,0.85);
-    line-height: 1.75; margin-bottom: 24px;
-  }
-  .cta-btn {
-    display: inline-block;
-    border: 2px solid rgba(255,255,255,0.85); color: var(--white);
-    background: transparent; padding: 11px 22px; border-radius: 3px;
-    font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
-    text-transform: uppercase; text-decoration: none;
-    transition: background 0.15s;
-  }
-  .cta-btn:hover { background: rgba(255,255,255,0.15); }
-
-  .content { padding: 48px 32px; }
+  .content { padding: 48px 48px 0; }
   .loading { font-size: 14px; color: var(--gray-60); }
+
+  .page-intro {
+    font-size: 23px; color: var(--black); line-height: 1.5;
+    max-width: 720px; margin: 0 0 52px;
+    font-weight: 500; letter-spacing: -0.01em;
+    padding-left: 22px; border-left: 3px solid var(--red);
+  }
 
   .section-intro { margin-bottom: 28px; max-width: 720px; }
   .eyebrow-red {
@@ -154,7 +128,7 @@ import Layout from '../layouts/Layout.astro';
 
   .feature-grid {
     display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 16px; margin-top: 48px;
+    gap: 16px; margin-top: 48px; margin-bottom: 48px;
   }
   .feature-card {
     background: var(--gray-10);
@@ -165,7 +139,7 @@ import Layout from '../layouts/Layout.astro';
   .feature-desc { font-size: 13px; color: var(--gray-60); line-height: 1.6; }
 
   .cta-strip {
-    margin: 48px 32px;
+    margin: 0 48px 48px;
     background: var(--gray-10); border-radius: 8px;
     padding: 28px 32px;
     display: flex; align-items: center;
@@ -192,11 +166,9 @@ import Layout from '../layouts/Layout.astro';
     .feature-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 700px) {
-    .page-hero { grid-template-columns: 1fr; padding: 48px 20px; }
-    h1 { font-size: 32px; }
-    .content { padding: 40px 20px; }
+    .content { padding: 40px 20px 0; }
     .content :global(.dubbed-grid) { grid-template-columns: repeat(3, 1fr); }
-    .cta-strip { flex-direction: column; align-items: flex-start; margin: 32px 20px; }
+    .cta-strip { flex-direction: column; align-items: flex-start; margin: 0 20px 32px; }
   }
 </style>
 

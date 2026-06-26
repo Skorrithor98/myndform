@@ -3,18 +3,17 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Yfirfærsla">
-  <div class="page-hero">
-    <div class="page-hero-left">
-      <div class="eyebrow">Hönnun & framleiðsla</div>
-      <h1>Yfirfærsla</h1>
-    </div>
-    <div class="page-hero-right">
-      <p>Við flytjum gamalt efni yfir á stafrænt snið — VHS, Super 8, myndspiður og fleira. Geymdu minningarnar áður en það er of seint.</p>
-      <a href="mailto:myndform@myndform.is" class="cta-btn">Hafðu samband</a>
+  <div class="site-hero">
+    <div class="site-hero-eyebrow">Hönnun & framleiðsla</div>
+    <h1>Yfirfærsla</h1>
+    <div class="site-hero-actions">
+      <a href="mailto:myndform@myndform.is" class="site-hero-btn">Hafðu samband</a>
     </div>
   </div>
 
   <div class="content">
+    <p class="page-intro">Við flytjum gamalt efni yfir á stafrænt snið — VHS, Super 8, myndspiður og fleira. Geymdu minningarnar áður en það er of seint.</p>
+
     <div class="feature-grid">
       <div class="feature-card">
         <div class="feature-name">VHS</div>
@@ -74,35 +73,14 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
-  .page-hero {
-    background: #1a1a1d;
-    padding: 56px 32px;
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 48px; align-items: center;
-  }
-  .eyebrow {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
-    text-transform: uppercase; color: #ff5a5a; margin-bottom: 12px;
-  }
-  h1 {
-    font-size: 44px; font-weight: 700; color: var(--white);
-    line-height: 1.05; letter-spacing: -0.02em;
-  }
-  .page-hero-right p {
-    font-size: 14px; color: rgba(255,255,255,0.85);
-    line-height: 1.75; margin-bottom: 24px;
-  }
-  .cta-btn {
-    display: inline-block;
-    border: 2px solid rgba(255,255,255,0.85); color: var(--white);
-    background: transparent; padding: 11px 22px; border-radius: 3px;
-    font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
-    text-transform: uppercase; text-decoration: none;
-    transition: background 0.15s;
-  }
-  .cta-btn:hover { background: rgba(255,255,255,0.15); }
+  .content { padding: 48px 48px; }
 
-  .content { padding: 48px 32px; }
+  .page-intro {
+    font-size: 23px; color: var(--black); line-height: 1.5;
+    max-width: 720px; margin: 0 0 52px;
+    font-weight: 500; letter-spacing: -0.01em;
+    padding-left: 22px; border-left: 3px solid var(--red);
+  }
 
   .feature-grid {
     display: grid; grid-template-columns: repeat(4, 1fr);
@@ -134,7 +112,7 @@ import Layout from '../layouts/Layout.astro';
   .step-desc { font-size: 13px; color: var(--gray-60); line-height: 1.6; }
 
   .cta-strip {
-    margin: 48px 32px;
+    margin: 48px 48px;
     background: var(--gray-10); border-radius: 8px;
     padding: 28px 32px;
     display: flex; align-items: center;
@@ -153,8 +131,7 @@ import Layout from '../layouts/Layout.astro';
   .cta-btn-red:hover { background: var(--red); color: var(--white); }
 
   @media (max-width: 700px) {
-    .page-hero { grid-template-columns: 1fr; padding: 48px 20px; }
-    h1 { font-size: 32px; }
+    .content { padding: 40px 20px; }
     .feature-grid { grid-template-columns: repeat(2, 1fr); }
     .info-block { padding: 24px; }
     .cta-strip { flex-direction: column; align-items: flex-start; margin: 32px 20px; }
