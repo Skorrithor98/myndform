@@ -1,0 +1,168 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Borðspil">
+  <div class="game-page">
+    <div id="game-content"><p class="loading">Sæki borðspil…</p></div>
+  </div>
+</Layout>
+
+<style>
+  .game-page { padding-bottom: 0; }
+  .loading { font-size: 14px; color: var(--gray-60); padding: 48px; }
+  .loading a { color: var(--red); }
+
+  /* Injected by the script, so :global() lets the styles reach it. */
+
+  .game-page :global(.back-bar) { padding: 28px 48px 0; }
+  .game-page :global(.back-link) {
+    font-size: 13px; color: var(--gray-60); text-decoration: none; transition: color 0.15s;
+  }
+  .game-page :global(.back-link:hover) { color: var(--red); }
+
+  .game-page :global(.hero) { background: #1a1a1d; padding: 36px 48px 32px; margin-top: 20px; }
+  .game-page :global(.hero-eyebrow) {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #ff5a5a; margin-bottom: 12px;
+  }
+  .game-page :global(.hero h1) {
+    font-size: 38px; font-weight: 700; color: #fff; line-height: 1.05; letter-spacing: -0.02em;
+  }
+
+  .game-page :global(.body) {
+    padding: 40px 48px 80px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
+  }
+
+  .game-page :global(.game-photo) {
+    background: var(--gray-10); border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    padding: 32px; min-height: 360px;
+  }
+  .game-page :global(.game-photo img) {
+    max-width: 100%; max-height: 480px; object-fit: contain; display: block;
+  }
+
+  .game-page :global(.detail-col) { padding-top: 4px; }
+
+  .game-page :global(.stat-row) {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 32px;
+  }
+  .game-page :global(.stat) {
+    background: var(--gray-10); border-radius: 12px;
+    padding: 18px 14px; text-align: center;
+  }
+  .game-page :global(.stat-label) {
+    font-size: 11px; color: var(--gray-60); text-transform: uppercase;
+    letter-spacing: 0.07em; margin-bottom: 6px;
+  }
+  .game-page :global(.stat-value) { font-size: 19px; font-weight: 700; color: #111; }
+
+  .game-page :global(.desc-block) { margin-bottom: 28px; }
+  .game-page :global(.desc-label) {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: #aaa; margin-bottom: 10px;
+  }
+  .game-page :global(.desc-text) {
+    font-size: 16px; color: #333; line-height: 1.75; white-space: pre-line;
+  }
+  .game-page :global(.publisher-line) {
+    font-size: 14px; color: var(--gray-60); margin-bottom: 28px;
+  }
+  .game-page :global(.publisher-line strong) { color: #111; font-weight: 600; }
+
+  .game-page :global(.order-row) {
+    border-top: 1px solid var(--gray-20); padding-top: 28px;
+  }
+  .game-page :global(.order-btn) {
+    display: inline-block; background: var(--red); color: #fff;
+    padding: 14px 28px; border-radius: 5px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; text-decoration: none; transition: background 0.15s;
+  }
+  .game-page :global(.order-btn:hover) { background: var(--red-dark); }
+  .game-page :global(.order-note) { font-size: 13px; color: var(--gray-60); margin-top: 12px; }
+
+  @media (max-width: 900px) {
+    .game-page :global(.body) { grid-template-columns: 1fr; gap: 32px; }
+    .game-page :global(.game-photo) { min-height: 300px; }
+  }
+  @media (max-width: 700px) {
+    .game-page :global(.hero) { padding: 32px 20px 28px; }
+    .game-page :global(.hero h1) { font-size: 30px; }
+    .game-page :global(.body), .game-page :global(.back-bar) { padding-left: 20px; padding-right: 20px; }
+  }
+</style>
+
+<script>
+  var PID = 'dc8pwssq';
+  var DS = 'production';
+
+  function imgUrl(ref, w) {
+    var id = ref.asset._ref.replace('image-', '').replace(/-([a-z]+)$/, '.$1');
+    return 'https://cdn.sanity.io/images/' + PID + '/' + DS + '/' + id + '?w=' + w;
+  }
+  function esc(s) { return s ? String(s) : ''; }
+
+  var slug = new URLSearchParams(window.location.search).get('slug');
+  var box = document.getElementById('game-content');
+
+  if (!slug) {
+    box.innerHTML = '<p class="loading">Ekkert spil valið. <a href="/bordspil">Til baka</a>.</p>';
+  } else {
+    var query = '*[_type == "boardgame" && slug.current == "' + slug + '"][0]';
+    var API = 'https://' + PID + '.api.sanity.io/v2024-01-01/data/query/' + DS + '?query=' + encodeURIComponent(query);
+    fetch(API)
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var g = data.result;
+        if (!g) {
+          box.innerHTML = '<p class="loading">Spilið fannst ekki. <a href="/bordspil">Til baka</a>.</p>';
+          return;
+        }
+        document.title = g.name + ' · Myndform';
+
+        function stat(label, val) {
+          if (!val) return '';
+          return '<div class="stat"><div class="stat-label">' + label + '</div>' +
+            '<div class="stat-value">' + esc(val) + '</div></div>';
+        }
+        var s = stat('Spilarar', g.players) + stat('Aldur', g.minAge) + stat('Tími', g.playtime);
+        var stats = s ? '<div class="stat-row">' + s + '</div>' : '';
+
+        var desc = g.description
+          ? '<div class="desc-block"><div class="desc-label">Um spilið</div>' +
+            '<div class="desc-text">' + esc(g.description) + '</div></div>'
+          : '';
+
+        var publisher = g.publisher
+          ? '<div class="publisher-line"><strong>Útgefandi:</strong> ' + esc(g.publisher) + '</div>'
+          : '';
+
+        var mailSubject = encodeURIComponent('Fyrirspurn um ' + g.name);
+        var orderLink = 'mailto:myndform@myndform.is?subject=' + mailSubject;
+
+        box.innerHTML =
+          '<div class="back-bar"><a class="back-link" href="/bordspil">← Til baka í borðspil</a></div>' +
+          '<div class="hero">' +
+            '<div class="hero-eyebrow">Heildsala · Borðspil</div>' +
+            '<h1>' + esc(g.name) + '</h1>' +
+          '</div>' +
+          '<div class="body">' +
+            '<div class="game-photo">' +
+              (g.image ? '<img src="' + imgUrl(g.image, 800) + '" alt="' + esc(g.name) + '">' : '') +
+            '</div>' +
+            '<div class="detail-col">' +
+              stats +
+              desc +
+              publisher +
+              '<div class="order-row">' +
+                '<a class="order-btn" href="' + orderLink + '">Hafðu samband til að panta</a>' +
+                '<div class="order-note">Sendu okkur línu og við sendum verðlista og nánari upplýsingar.</div>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+      });
+  }
+</script>

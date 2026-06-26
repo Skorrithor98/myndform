@@ -9,7 +9,7 @@ import Layout from '../layouts/Layout.astro';
       <div class="hero-inner">
         <div class="hero-eyebrow">Heildsala</div>
         <h1>Borðspil</h1>
-        <p>Fjölbreytt úrval borðspila frá ýmsum framleiðendum — fyrir alla aldurshópa. Hafðu samband til að panta í heildsölu.</p>
+        <p>Fjölbreytt úrval borðspila frá ýmsum framleiðendum — fyrir alla aldurshópa. Smelltu á spil til að sjá nánari upplýsingar, eða hafðu samband til að panta í heildsölu.</p>
         <a class="order-btn" href="mailto:myndform@myndform.is?subject=Fyrirspurn%20um%20bor%C3%B0spil">Hafðu samband til að panta</a>
       </div>
     </div>
@@ -27,13 +27,13 @@ import Layout from '../layouts/Layout.astro';
   .back-link { font-size: 13px; color: var(--gray-60); text-decoration: none; transition: color 0.15s; }
   .back-link:hover { color: var(--red); }
 
-  .hero { background: #1a1a1d; padding: 48px 0; margin-top: 20px; }
+  .hero { background: #1a1a1d; padding: 36px 0 40px; margin-top: 20px; }
   .hero-inner { max-width: none; margin: 0; padding: 0 48px; }
   .hero-eyebrow {
     font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
     text-transform: uppercase; color: #ff5a5a; margin-bottom: 12px;
   }
-  .hero h1 { font-size: 44px; font-weight: 700; color: #fff; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 16px; }
+  .hero h1 { font-size: 38px; font-weight: 700; color: #fff; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 16px; }
   .hero p { font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.7; max-width: 660px; margin-bottom: 24px; }
   .order-btn {
     display: inline-block; background: var(--red); color: #fff;
@@ -49,28 +49,47 @@ import Layout from '../layouts/Layout.astro';
 
   .content :global(.game-grid) { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; }
   .content :global(.game-card) {
+    position: relative;
     display: flex; flex-direction: column;
     border: 1px solid var(--gray-20); border-radius: 12px;
     overflow: hidden; background: #fff;
+    text-decoration: none; color: inherit;
+    opacity: 0; transform: translateY(14px);
+    animation: cardRise 0.5s ease forwards;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
   }
+  @keyframes cardRise { to { opacity: 1; transform: translateY(0); } }
+  .content :global(.game-card:hover) {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.13);
+    border-color: var(--gray-60);
+  }
+  .content :global(.game-tag) {
+    position: absolute; top: 10px; right: 10px;
+    z-index: 2;
+    background: var(--red); color: #fff;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+    padding: 5px 11px; border-radius: 6px;
+    opacity: 0; transform: translateY(-4px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    pointer-events: none;
+  }
+  .content :global(.game-card:hover .game-tag) { opacity: 1; transform: translateY(0); }
   .content :global(.game-thumb) {
     aspect-ratio: 1/1; background: #fff;
     display: flex; align-items: center; justify-content: center; padding: 22px;
   }
-  .content :global(.game-thumb img) { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+  .content :global(.game-thumb img) {
+    max-width: 100%; max-height: 100%; object-fit: contain; display: block;
+    transition: transform 0.18s ease;
+  }
+  .content :global(.game-card:hover .game-thumb img) { transform: scale(1.04); }
   .content :global(.game-meta) {
-    padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 7px;
+    padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 5px;
     border-top: 1px solid var(--gray-20);
   }
   .content :global(.game-name) { font-size: 15px; font-weight: 700; line-height: 1.3; color: #111; }
-  .content :global(.game-publisher) { font-size: 12px; color: #999; margin-top: -4px; }
-  .content :global(.game-desc) { font-size: 13px; color: #555; line-height: 1.55; }
-  .content :global(.game-chips) { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
-  .content :global(.game-chip) {
-    font-size: 11px; color: #555;
-    background: var(--gray-10); border-radius: 999px; padding: 4px 11px;
-  }
-  .content :global(.game-chip strong) { color: #222; font-weight: 600; }
+  .content :global(.game-publisher) { font-size: 12px; color: #999; }
 
   @media (max-width: 1500px) { .content :global(.game-grid) { grid-template-columns: repeat(5, 1fr); } }
   @media (max-width: 1200px) { .content :global(.game-grid) { grid-template-columns: repeat(4, 1fr); } }
@@ -85,7 +104,7 @@ import Layout from '../layouts/Layout.astro';
 <script>
   var PID = 'dc8pwssq';
   var DS = 'production';
-  var Q = encodeURIComponent('*[_type == "boardgame"] | order(name asc)');
+  var Q = encodeURIComponent('*[_type == "boardgame"] | order(name asc){name, publisher, image, "slug": slug.current}');
   var API = 'https://' + PID + '.api.sanity.io/v2024-01-01/data/query/' + DS + '?query=' + Q;
 
   function imgUrl(ref, w) {
@@ -93,25 +112,24 @@ import Layout from '../layouts/Layout.astro';
     return 'https://cdn.sanity.io/images/' + PID + '/' + DS + '/' + id + '?w=' + w;
   }
   function esc(s) { return s ? String(s) : ''; }
-  function chip(label, val) {
-    return '<span class="game-chip"><strong>' + label + '</strong> ' + esc(val) + '</span>';
-  }
-  function gameCard(g) {
-    var chips = '';
-    if (g.players) chips += chip('Spilarar', g.players);
-    if (g.minAge) chips += chip('Aldur', g.minAge);
-    if (g.playtime) chips += chip('Tími', g.playtime);
-    return '<div class="game-card">' +
+
+  function gameCard(g, i) {
+    var inner =
+      '<span class="game-tag">Skoða →</span>' +
       '<div class="game-thumb">' +
         (g.image ? '<img src="' + imgUrl(g.image, 400) + '" alt="' + esc(g.name) + '">' : '') +
       '</div>' +
       '<div class="game-meta">' +
         '<div class="game-name">' + esc(g.name) + '</div>' +
         (g.publisher ? '<div class="game-publisher">' + esc(g.publisher) + '</div>' : '') +
-        (g.description ? '<div class="game-desc">' + esc(g.description) + '</div>' : '') +
-        (chips ? '<div class="game-chips">' + chips + '</div>' : '') +
-      '</div>' +
-    '</div>';
+      '</div>';
+
+    var delay = ' style="animation-delay:' + (i * 60) + 'ms"';
+
+    if (g.slug) {
+      return '<a class="game-card" href="/bordspil-sida?slug=' + g.slug + '"' + delay + '>' + inner + '</a>';
+    }
+    return '<div class="game-card"' + delay + '>' + inner + '</div>';
   }
 
   fetch(API)
