@@ -4,16 +4,16 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="Heildsala">
   <div class="heildsala-page">
-    <div class="hero">
-      <div class="hero-inner">
-        <div class="hero-eyebrow">Myndform</div>
-        <h1>Heildsala</h1>
-        <p>Við dreifum og seljum á heildsöluverði til verslana og fyrirtækja um allt land — borðspil, leikföng, mat- og drykkjarvörur. Hafðu samband til að gerast viðskiptavinur.</p>
-        <a href="mailto:myndform@myndform.is" class="cta-btn">Gerast viðskiptavinur</a>
+    <div class="site-hero">
+      <div class="site-hero-eyebrow">Myndform</div>
+      <h1>Heildsala</h1>
+      <div class="site-hero-actions">
+        <a href="mailto:myndform@myndform.is" class="site-hero-btn">Gerast viðskiptavinur</a>
       </div>
     </div>
 
     <div class="content">
+      <p class="page-intro">Við dreifum og seljum á heildsöluverði til verslana og fyrirtækja um allt land — borðspil, leikföng, mat- og drykkjarvörur. Hafðu samband til að gerast viðskiptavinur.</p>
       <div id="catalog-root">
         <p class="loading">Sæki vörur…</p>
       </div>
@@ -34,22 +34,12 @@ import Layout from '../layouts/Layout.astro';
 <style>
   .heildsala-page { padding-bottom: 0; }
 
-  .hero { background: #1a1a1d; padding: 56px 0; }
-  .hero-inner { max-width: none; margin: 0; padding: 0 48px; }
-  .hero-eyebrow {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
-    text-transform: uppercase; color: #ff5a5a; margin-bottom: 14px;
+  .page-intro {
+    font-size: 23px; color: var(--black); line-height: 1.5;
+    max-width: 720px; margin: 0 0 44px;
+    font-weight: 500; letter-spacing: -0.01em;
+    padding-left: 22px; border-left: 3px solid var(--red);
   }
-  .hero h1 { font-size: 46px; font-weight: 700; color: #fff; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 18px; }
-  .hero p { font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.75; max-width: 680px; margin-bottom: 26px; }
-  .cta-btn {
-    display: inline-block;
-    border: 2px solid rgba(255,255,255,0.85); color: #fff;
-    background: transparent; padding: 12px 24px; border-radius: 4px;
-    font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
-    text-transform: uppercase; text-decoration: none; transition: background 0.15s;
-  }
-  .cta-btn:hover { background: rgba(255,255,255,0.15); }
 
   .content { max-width: none; margin: 0; padding: 52px 48px; }
   .loading { font-size: 14px; color: var(--gray-60); }
@@ -127,9 +117,7 @@ import Layout from '../layouts/Layout.astro';
     .content :global(.banner-thumbs) { display: none; }
   }
   @media (max-width: 700px) {
-    .hero { padding: 48px 0; }
-    .hero h1 { font-size: 34px; }
-    .hero-inner, .content, .cta-strip-wrap { padding-left: 20px; padding-right: 20px; }
+    .content, .cta-strip-wrap { padding-left: 20px; padding-right: 20px; }
     .content :global(.brand-grid) { grid-template-columns: repeat(2, 1fr); }
     .content :global(.bordspil-banner) { flex-direction: column; align-items: flex-start; }
     .cta-strip { flex-direction: column; align-items: flex-start; }

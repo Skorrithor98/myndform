@@ -3,46 +3,26 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Um okkur">
-  <div class="page-hero">
-    <div class="page-hero-left">
-      <div class="eyebrow">Myndform</div>
-      <h1>Um okkur</h1>
-    </div>
-    <div class="page-hero-right">
-      <p>Myndform hefur starfað við kvikmyndadreifingu, hönnun, prentun og heildsölu í áratugi. Við erum staðsett í Trönuhrauni 1 í Hafnarfirði og þjónum viðskiptavinum um allt land.</p>
-    </div>
+  <div class="site-hero">
+    <div class="site-hero-eyebrow">Myndform</div>
+    <h1>Um okkur</h1>
   </div>
 
   <div class="content">
-    <div class="info-grid">
-      <div class="info-block">
-        <div class="info-label">Staðsetning</div>
-        <div class="info-value">Trönuhraun 1<br>220 Hafnarfjörður</div>
-      </div>
-      <div class="info-block">
-        <div class="info-label">Sími</div>
-        <div class="info-value">+354 534 0400</div>
-      </div>
-      <div class="info-block">
-        <div class="info-label">Netfang</div>
-        <div class="info-value">
-          <a href="mailto:myndform@myndform.is">myndform@myndform.is</a>
-        </div>
-      </div>
-      <div class="info-block">
-        <div class="info-label">Opnunartímar</div>
-        <div class="info-value">
-          Mánudagur 09–16<br>
-          Þriðjudagur–Föstudagur 09–17<br>
-          Lokað um helgar
-        </div>
-      </div>
+    <p class="page-intro">Myndform hefur starfað við kvikmyndadreifingu, hönnun, prentun og heildsölu í áratugi. Við erum staðsett í Trönuhrauni 1 í Hafnarfirði og þjónum viðskiptavinum um allt land.</p>
+
+    
+
+    <!-- ── STARFSFÓLK ── -->
+    <div class="staff-section">
+      <div class="section-label">Starfsfólk</div>
+      <div id="staff-root" class="staff-grid"><p class="loading">Sæki starfsfólk…</p></div>
     </div>
 
     <div class="divider"></div>
 
     <div class="services-overview">
-      <div class="services-overview-label">Þjónusta okkar</div>
+      <div class="section-label">Þjónusta okkar</div>
       <div class="services-list">
         <a href="/films" class="service-row">
           <div class="service-row-name">Kvikmyndadreifing</div>
@@ -80,25 +60,14 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
-  .page-hero {
-    background: var(--red);
-    padding: 56px 32px;
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 48px; align-items: center;
-  }
-  .eyebrow {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
-    text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 12px;
-  }
-  h1 {
-    font-size: 44px; font-weight: 700; color: var(--white);
-    line-height: 1.05; letter-spacing: -0.02em;
-  }
-  .page-hero-right p {
-    font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.75;
-  }
+  .content { padding: 48px 48px 80px; }
 
-  .content { padding: 48px 32px; }
+  .page-intro {
+    font-size: 23px; color: var(--black); line-height: 1.5;
+    max-width: 720px; margin: 0 0 48px;
+    font-weight: 500; letter-spacing: -0.01em;
+    padding-left: 22px; border-left: 3px solid var(--red);
+  }
 
   .info-grid {
     display: grid; grid-template-columns: repeat(4, 1fr);
@@ -108,48 +77,105 @@ import Layout from '../layouts/Layout.astro';
     font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
     text-transform: uppercase; color: var(--gray-60); margin-bottom: 10px;
   }
-  .info-value {
-    font-size: 14px; line-height: 1.7; color: var(--black);
-  }
-  .info-value a {
-    color: var(--red); text-decoration: none;
-  }
+  .info-value { font-size: 14px; line-height: 1.7; color: var(--black); }
+  .info-value a { color: var(--red); text-decoration: none; }
   .info-value a:hover { text-decoration: underline; }
 
   .divider { height: 1px; background: var(--gray-20); margin-bottom: 48px; }
 
-  .services-overview-label {
+  .section-label {
     font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
-    text-transform: uppercase; color: #aaa; margin-bottom: 16px;
+    text-transform: uppercase; color: #aaa; margin-bottom: 20px;
   }
+
+  /* ── STARFSFÓLK ── */
+  .staff-section { margin-bottom: 48px; }
+  .loading { font-size: 14px; color: var(--gray-60); }
+
+  /* Injected by the script, so :global() lets the styles reach it. */
+
+  :global(#staff-root) { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  :global(#staff-root .empty-note) { font-size: 14px; color: var(--gray-60); grid-column: 1 / -1; }
+  :global(#staff-root .staff-card) {
+    border: 1px solid var(--gray-20) !important;
+    border-left: 3px solid var(--red) !important;
+    border-radius: 0 8px 8px 0;
+    padding: 20px 22px;
+    background: var(--gray-10);
+  }
+  :global(#staff-root .staff-name) { font-size: 16px; font-weight: 700; color: #111; margin-bottom: 3px; }
+  :global(#staff-root .staff-role) { font-size: 13px; color: var(--gray-60); margin-bottom: 14px; }
+  :global(#staff-root .staff-contact) { display: flex !important; flex-direction: column !important; gap: 6px; }
+  :global(#staff-root .staff-contact a) {
+    font-size: 13px !important; color: #333 !important; text-decoration: none !important;
+    display: inline-flex !important; align-items: center; gap: 7px;
+    transition: color 0.15s;
+  }
+  :global(#staff-root .staff-contact a:hover) { color: var(--red) !important; }
+  :global(#staff-root .staff-contact .ico) { color: #aaa; font-size: 12px; width: 14px; flex-shrink: 0; }
+
   .services-list { display: flex; flex-direction: column; }
   .service-row {
     display: grid; grid-template-columns: 200px 1fr 32px;
     gap: 24px; align-items: center;
     padding: 20px 0; border-bottom: 1px solid var(--gray-20);
     text-decoration: none; color: inherit;
-    transition: background 0.15s;
+    transition: padding 0.15s;
   }
   .service-row:first-child { border-top: 1px solid var(--gray-20); }
   .service-row:hover { padding-left: 8px; }
-  .service-row-name {
-    font-size: 14px; font-weight: 600; color: var(--black);
-  }
-  .service-row-desc {
-    font-size: 13px; color: var(--gray-60); line-height: 1.5;
-  }
+  .service-row-name { font-size: 14px; font-weight: 600; color: var(--black); }
+  .service-row-desc { font-size: 13px; color: var(--gray-60); line-height: 1.5; }
   .service-row-arrow {
     font-size: 18px; color: var(--red); text-align: right;
     opacity: 0; transition: opacity 0.15s;
   }
   .service-row:hover .service-row-arrow { opacity: 1; }
 
+  @media (max-width: 900px) {
+    :global(#staff-root) { grid-template-columns: repeat(2, 1fr); }
+  }
   @media (max-width: 700px) {
-    .page-hero { grid-template-columns: 1fr; padding: 48px 20px; }
     h1 { font-size: 32px; }
     .info-grid { grid-template-columns: repeat(2, 1fr); }
-    .content { padding: 40px 20px; }
+    .content { padding: 40px 20px 60px; }
+    :global(#staff-root) { grid-template-columns: 1fr; }
     .service-row { grid-template-columns: 1fr; gap: 4px; }
     .service-row-arrow { display: none; }
   }
 </style>
+
+<script>
+  var PID = 'dc8pwssq';
+  var DS = 'production';
+  var Q = encodeURIComponent('*[_type == "staff"] | order(order asc, name asc){name, role, email, phone}');
+  var API = 'https://' + PID + '.api.sanity.io/v2024-01-01/data/query/' + DS + '?query=' + Q;
+
+  function esc(s) { return s ? String(s) : ''; }
+
+  function staffCard(p) {
+    var contact = '';
+    if (p.email) {
+      contact += '<a href="mailto:' + esc(p.email) + '"><span class="ico">✉</span>' + esc(p.email) + '</a>';
+    }
+    if (p.phone) {
+      var telClean = String(p.phone).replace(/\s/g, '');
+      contact += '<a href="tel:' + telClean + '"><span class="ico">✆</span>' + esc(p.phone) + '</a>';
+    }
+    return '<div class="staff-card">' +
+      '<div class="staff-name">' + esc(p.name) + '</div>' +
+      (p.role ? '<div class="staff-role">' + esc(p.role) + '</div>' : '') +
+      (contact ? '<div class="staff-contact">' + contact + '</div>' : '') +
+    '</div>';
+  }
+
+  fetch(API)
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      var people = data.result || [];
+      var root = document.getElementById('staff-root');
+      root.innerHTML = people.length
+        ? people.map(staffCard).join('')
+        : '<p class="empty-note">Engið starfsfólk skráð ennþá.</p>';
+    });
+</script>

@@ -135,6 +135,12 @@ import Layout from '../layouts/Layout.astro';
     .product-page :global(.back-bar) { padding-left: 20px; padding-right: 20px; }
     .product-page :global(.related-grid) { grid-template-columns: repeat(2, 1fr); }
   }
+  .product-page :global(.page-intro) {
+    font-size: 22px; color: var(--black); line-height: 1.5;
+    max-width: 720px; margin: 0 0 36px;
+    font-weight: 500; letter-spacing: -0.01em;
+    padding-left: 22px; border-left: 3px solid var(--red);
+  }
 </style>
 
 <script>
@@ -240,10 +246,11 @@ import Layout from '../layouts/Layout.astro';
           '<div class="hero"><div class="hero-inner">' +
             (p.brand ? '<div class="hero-eyebrow">Heildsala · ' + esc(p.brand.name) + '</div>' : '<div class="hero-eyebrow">Heildsala</div>') +
             '<h1>' + esc(p.name) + '</h1>' +
-            (p.tagline ? '<p class="hero-tagline">' + esc(p.tagline) + '</p>' : '') +
             badges +
           '</div></div>' +
-          '<div class="body"><div class="body-grid">' +
+          '<div class="body">' +
+            (p.tagline ? '<p class="page-intro">' + esc(p.tagline) + '</p>' : '') +
+            '<div class="body-grid">' +
             '<div class="image-col">' +
               (p.image ? '<img src="' + imgUrl(p.image, 800) + '" alt="' + esc(p.name) + '">' : '') +
             '</div>' +

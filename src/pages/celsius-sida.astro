@@ -1,0 +1,120 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Celsius">
+  <div class="flavour-page">
+    <div id="flavour-content"><p class="loading">Sæki bragðtegund…</p></div>
+  </div>
+</Layout>
+
+<style>
+  .flavour-page { padding-bottom: 0; }
+  .loading { font-size: 14px; color: var(--gray-60); padding: 48px; }
+  .loading a { color: var(--red); }
+
+  :global(.back-bar) { padding: 28px 48px 0; }
+  :global(.back-link) {
+    font-size: 13px; color: var(--gray-60); text-decoration: none; transition: color 0.15s;
+  }
+  :global(.back-link:hover) { color: var(--red); }
+
+  :global(.f-hero) { background: #1a1a1d; padding: 36px 48px 32px; margin-top: 20px; position: relative; overflow: hidden; }
+  :global(.f-hero-accent) { position: absolute; top: 0; left: 0; right: 0; height: 5px; background: var(--gray-20); }
+  :global(.f-hero-eyebrow) {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #ff5a5a; margin-bottom: 12px;
+  }
+  :global(.f-hero h1) {
+    font-size: 38px; font-weight: 700; color: #fff; line-height: 1.05; letter-spacing: -0.02em;
+  }
+
+  :global(.f-body) {
+    padding: 40px 48px 80px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
+  }
+  :global(.f-photo) {
+    border-radius: 14px; display: flex; align-items: center; justify-content: center;
+    padding: 32px; height: 460px; overflow: hidden;
+  }
+  :global(.f-photo img) { max-width: 100% !important; max-height: 100% !important; width: auto !important; height: auto !important; object-fit: contain; display: block; }
+
+  :global(.f-col) { padding-top: 4px; }
+  :global(.f-desc-label) {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--red); margin-bottom: 16px;
+  }
+  :global(.f-desc) {
+    font-size: 26px; color: #111; line-height: 1.45;
+    font-weight: 500; letter-spacing: -0.015em;
+    white-space: pre-line; margin-bottom: 32px;
+  }
+  :global(.f-order-row) { border-top: 1px solid var(--gray-20); padding-top: 28px; }
+  :global(.f-order-btn) {
+    display: inline-block; background: var(--red); color: #fff;
+    padding: 14px 28px; border-radius: 5px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; text-decoration: none; transition: background 0.15s;
+  }
+  :global(.f-order-btn:hover) { background: var(--red-dark); }
+  :global(.f-order-note) { font-size: 13px; color: var(--gray-60); margin-top: 12px; }
+
+  @media (max-width: 900px) {
+    :global(.f-body) { grid-template-columns: 1fr; gap: 32px; }
+    :global(.f-photo) { height: 360px; }
+  }
+  @media (max-width: 700px) {
+    :global(.f-hero) { padding: 32px 20px 28px; }
+    :global(.f-hero h1) { font-size: 30px; }
+    :global(.f-body), :global(.back-bar) { padding-left: 20px; padding-right: 20px; }
+  }
+</style>
+
+<script>
+  var PID = 'dc8pwssq';
+  var DS = 'production';
+
+  function esc(s) { return s ? String(s) : ''; }
+
+  var slug = new URLSearchParams(window.location.search).get('slug');
+  var box = document.getElementById('flavour-content');
+
+  if (!slug) {
+    box.innerHTML = '<p class="loading">Engin bragðtegund valin. <a href="/celsius">Til baka</a>.</p>';
+  } else {
+    var query = '*[_type == "celsiusFlavour" && slug.current == "' + slug + '"][0]{name, description, "img": image.asset->url, "color": image.asset->metadata.palette.vibrant.background}';
+    var API = 'https://' + PID + '.api.sanity.io/v2024-01-01/data/query/' + DS + '?query=' + encodeURIComponent(query);
+    fetch(API)
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var f = data.result;
+        if (!f) {
+          box.innerHTML = '<p class="loading">Bragðtegundin fannst ekki. <a href="/celsius">Til baka</a>.</p>';
+          return;
+        }
+        document.title = f.name + ' · Myndform';
+        var accent = f.color || '#e8e8e8';
+        var mail = 'mailto:myndform@myndform.is?subject=' + encodeURIComponent('Fyrirspurn um Celsius ' + f.name);
+
+        box.innerHTML =
+          '<div class="back-bar"><a class="back-link" href="/celsius">← Til baka í Celsius</a></div>' +
+          '<div class="f-hero">' +
+            '<div class="f-hero-accent" style="background:' + accent + '"></div>' +
+            '<div class="f-hero-eyebrow">Heildsala · Celsius</div>' +
+            '<h1>' + esc(f.name) + '</h1>' +
+          '</div>' +
+          '<div class="f-body">' +
+            '<div class="f-photo" style="background:' + accent + '18">' +
+              (f.img ? '<img src="' + f.img + '?w=800" alt="' + esc(f.name) + '">' : '') +
+            '</div>' +
+            '<div class="f-col">' +
+              (f.description ? '<div class="f-desc-label">Um bragðtegundina</div><div class="f-desc" style="border-left:4px solid ' + accent + '; padding-left:20px;">' + esc(f.description) + '</div>' : '') +
+              '<div class="f-order-row">' +
+                '<a class="f-order-btn" href="' + mail + '">Hafðu samband til að panta</a>' +
+                '<div class="f-order-note">Sendu okkur línu og við sendum verðlista og nánari upplýsingar.</div>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+      });
+  }
+</script>

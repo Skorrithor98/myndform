@@ -3,224 +3,106 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Celsius">
-  <div class="celsius-hero">
-    <div class="celsius-hero-inner">
-      <div class="celsius-badge">Myndform dreifir</div>
-      <div class="celsius-logo">°C CELSIUS</div>
-      <div class="celsius-tagline">LIVE FIT</div>
-      <h1>Orkudrykkurinn<br>sem þrýtur af<br>náttúrulegum<br>innihaldsefnum.</h1>
+  <div class="site-hero">
+    <div class="site-hero-eyebrow">Heildsala</div>
+    <h1>Celsius</h1>
+    <div class="site-hero-actions">
+      <a href="mailto:myndform@myndform.is?subject=Fyrirspurn%20um%20Celsius" class="site-hero-btn">Hafðu samband til að panta</a>
     </div>
   </div>
 
   <div class="content">
-    <div class="intro-block">
-      <div class="intro-text">
-        <h2>Celsius orkudrykkur</h2>
-        <p>Það er ekki að ástæðulausu að Celsius sé einn vinsælasti drykkur sinnar tegundar í Bandaríkjunum og á Norðurlöndunum. Margt íþróttafólk velur að svala þorstanum með Celsius þar sem drykkurinn inniheldur 114 mg af koffíni og er algjörlega kolvetnalaus. Celsius er einnig 100% vegan.</p>
-        <p>Ásamt því að vera góð uppspretta koffíns inniheldur drykkurinn grænt te, króm, kalk, engifer og ýmis vel valin vítamín sem vinna í sameiningu að aukinni brennslu líkamans.</p>
-        <p>Celsius er algjörlega sykurlaus, stútfullur af hollustu og inniheldur hver dos aðeins 4 hitaeiningar. Það verður enginn svikinn af Celsius!</p>
-      </div>
-      <div class="intro-cans">
-        <div class="cans-placeholder">
-          <div class="can c1"></div>
-          <div class="can c2"></div>
-          <div class="can c3"></div>
-          <div class="can c4"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="flavours">
-      <div class="flavours-label">Bragðtegundir</div>
-      <div class="flavour-grid">
-        <div class="flavour-card f1">
-          <div class="flavour-name">Peach Vibe</div>
-          <div class="flavour-type">Sparkling</div>
-        </div>
-        <div class="flavour-card f2">
-          <div class="flavour-name">Strawberry Lemonade</div>
-          <div class="flavour-type">Sparkling</div>
-        </div>
-        <div class="flavour-card f3">
-          <div class="flavour-name">Fantasy Vibe</div>
-          <div class="flavour-type">Sparkling · Nýtt</div>
-        </div>
-        <div class="flavour-card f4">
-          <div class="flavour-name">Cosmic Vibe</div>
-          <div class="flavour-type">Sparkling</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="facts-grid">
-      <div class="fact-card">
-        <div class="fact-number">114mg</div>
-        <div class="fact-label">Koffín á dós</div>
-      </div>
-      <div class="fact-card">
-        <div class="fact-number">4</div>
-        <div class="fact-label">Hitaeiningar</div>
-      </div>
-      <div class="fact-card">
-        <div class="fact-number">0g</div>
-        <div class="fact-label">Sykur</div>
-      </div>
-      <div class="fact-card">
-        <div class="fact-number">100%</div>
-        <div class="fact-label">Vegan</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="celsius-cta">
-    <div class="celsius-cta-inner">
-      <div class="celsius-cta-title">Hefur þú áhuga á að selja Celsius?</div>
-      <div class="celsius-cta-sub">Myndform dreifir Celsius til verslana um allt land — hafðu samband.</div>
-      <a href="mailto:myndform@myndform.is" class="celsius-cta-btn">Hafðu samband</a>
-    </div>
+    <p class="page-intro">Orkudrykkurinn Celsius — ferskar bragðtegundir í heildsölu. Smelltu á bragðtegund til að sjá nánar, eða hafðu samband til að panta.</p>
+    <div id="flavours-root" class="flavour-grid"><p class="loading">Sæki bragðtegundir…</p></div>
   </div>
 </Layout>
 
 <style>
-  /* ── HERO ── */
-  .celsius-hero {
-    background: linear-gradient(135deg, #f97316 0%, #ea580c 50%, #c2410c 100%);
-    padding: 72px 32px 80px;
-    position: relative; overflow: hidden;
-  }
-  .celsius-hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 70% 50%, rgba(255,255,255,0.08) 0%, transparent 70%);
-  }
-  .celsius-hero-inner { position: relative; max-width: 600px; }
-  .celsius-badge {
-    display: inline-block;
-    background: rgba(255,255,255,0.15);
-    color: rgba(255,255,255,0.9);
-    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
-    text-transform: uppercase; padding: 5px 12px; border-radius: 20px;
-    margin-bottom: 20px;
-  }
-  .celsius-logo {
-    font-size: 32px; font-weight: 800; color: var(--white);
-    letter-spacing: 0.05em; margin-bottom: 4px;
-  }
-  .celsius-tagline {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
-    color: rgba(255,255,255,0.6); text-transform: uppercase; margin-bottom: 28px;
-  }
-  h1 {
-    font-size: 42px; font-weight: 700; color: var(--white);
-    line-height: 1.1; letter-spacing: -0.02em;
+  .content { padding: 48px 48px 80px; }
+  .loading { font-size: 14px; color: var(--gray-60); }
+
+  .page-intro {
+    font-size: 23px; color: var(--black); line-height: 1.5;
+    max-width: 720px; margin: 0 0 52px;
+    font-weight: 500; letter-spacing: -0.01em;
+    padding-left: 22px; border-left: 3px solid var(--red);
   }
 
-  /* ── CONTENT ── */
-  .content { padding: 56px 32px 0; }
+  :global(.flavour-grid) { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+  :global(.flavour-grid .empty-note) { font-size: 14px; color: var(--gray-60); grid-column: 1 / -1; }
 
-  .intro-block {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 56px; align-items: center; margin-bottom: 56px;
+  :global(.flavour-card) {
+    position: relative;
+    border-radius: 14px; overflow: hidden;
+    border: 1px solid var(--gray-20);
+    background: #fff; display: block;
+    text-decoration: none; color: inherit;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
   }
-  h2 {
-    font-size: 24px; font-weight: 700; letter-spacing: -0.01em;
-    margin-bottom: 16px;
+  :global(.flavour-card:hover) { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+  :global(.flavour-accent) { height: 6px; width: 100%; background: var(--gray-20); }
+  :global(.flavour-photo) {
+    height: 300px; display: flex; align-items: center; justify-content: center;
+    padding: 20px; background: #fff; overflow: hidden;
   }
-  .intro-text p {
-    font-size: 14px; color: var(--gray-60); line-height: 1.8;
-    margin-bottom: 14px;
+  :global(.flavour-card img) {
+    max-width: 100% !important; max-height: 100% !important;
+    width: auto !important; height: auto !important;
+    object-fit: contain; display: block;
   }
-  .intro-text p:last-child { margin-bottom: 0; }
+  :global(.flavour-meta) { padding: 14px 18px 20px; border-top: 1px solid var(--gray-20); }
+  :global(.flavour-name) { font-size: 15px; font-weight: 700; color: #111; line-height: 1.3; }
+  :global(.flavour-tag) {
+    position: absolute; top: 14px; right: 14px; z-index: 2;
+    background: var(--red); color: #fff;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+    padding: 5px 11px; border-radius: 6px;
+    opacity: 0; transform: translateY(-4px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    pointer-events: none;
+  }
+  :global(.flavour-card:hover .flavour-tag) { opacity: 1; transform: translateY(0); }
 
-  /* placeholder cans */
-  .cans-placeholder {
-    display: flex; align-items: flex-end; gap: 8px;
-    justify-content: center; padding: 24px;
-    background: var(--gray-10); border-radius: 12px;
-    height: 240px;
-  }
-  .can {
-    width: 52px; border-radius: 6px 6px 4px 4px;
-    flex-shrink: 0;
-  }
-  .c1 { height: 160px; background: linear-gradient(180deg, #fb923c, #ea580c); }
-  .c2 { height: 180px; background: linear-gradient(180deg, #f43f5e, #e11d48); }
-  .c3 { height: 200px; background: linear-gradient(180deg, #a78bfa, #7c3aed); }
-  .c4 { height: 170px; background: linear-gradient(180deg, #38bdf8, #0284c7); }
-
-  /* ── FLAVOURS ── */
-  .flavours { margin-bottom: 48px; }
-  .flavours-label {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
-    text-transform: uppercase; color: #aaa; margin-bottom: 16px;
-  }
-  .flavour-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
-  }
-  .flavour-card {
-    border-radius: 8px; padding: 24px 20px;
-    position: relative; overflow: hidden;
-  }
-  .f1 { background: linear-gradient(135deg, #fb923c, #f97316); }
-  .f2 { background: linear-gradient(135deg, #f43f5e, #e11d48); }
-  .f3 { background: linear-gradient(135deg, #a78bfa, #7c3aed); }
-  .f4 { background: linear-gradient(135deg, #38bdf8, #0284c7); }
-  .flavour-name {
-    font-size: 15px; font-weight: 700; color: var(--white);
-    margin-bottom: 4px; line-height: 1.3;
-  }
-  .flavour-type {
-    font-size: 11px; color: rgba(255,255,255,0.7);
-    font-weight: 500; letter-spacing: 0.04em;
-  }
-
-  /* ── FACTS ── */
-  .facts-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 12px; margin-bottom: 56px;
-  }
-  .fact-card {
-    background: var(--gray-10); border-radius: 8px;
-    padding: 28px 20px; text-align: center;
-    border-bottom: 3px solid #f97316;
-  }
-  .fact-number {
-    font-size: 32px; font-weight: 700; color: var(--black);
-    margin-bottom: 6px; letter-spacing: -0.02em;
-  }
-  .fact-label { font-size: 12px; color: var(--gray-60); font-weight: 500; }
-
-  /* ── CTA ── */
-  .celsius-cta {
-    background: linear-gradient(135deg, #f97316, #ea580c);
-    padding: 48px 32px;
-  }
-  .celsius-cta-inner { max-width: 560px; }
-  .celsius-cta-title {
-    font-size: 22px; font-weight: 700; color: var(--white);
-    margin-bottom: 8px;
-  }
-  .celsius-cta-sub {
-    font-size: 14px; color: rgba(255,255,255,0.8);
-    line-height: 1.6; margin-bottom: 24px;
-  }
-  .celsius-cta-btn {
-    display: inline-block;
-    background: var(--white); color: #ea580c;
-    padding: 12px 24px; border-radius: 3px;
-    font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
-    text-transform: uppercase; text-decoration: none;
-    transition: opacity 0.15s;
-  }
-  .celsius-cta-btn:hover { opacity: 0.9; }
-
-  @media (max-width: 700px) {
-    .celsius-hero { padding: 48px 20px 56px; }
-    h1 { font-size: 30px; }
-    .content { padding: 40px 20px 0; }
-    .intro-block { grid-template-columns: 1fr; gap: 32px; }
-    .flavour-grid { grid-template-columns: repeat(2, 1fr); }
-    .facts-grid { grid-template-columns: repeat(2, 1fr); }
-    .celsius-cta { padding: 40px 20px; }
+  @media (max-width: 1200px) { :global(.flavour-grid) { grid-template-columns: repeat(4, 1fr); } }
+  @media (max-width: 900px)  { :global(.flavour-grid) { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 700px)  {
+    .content { padding: 40px 20px 60px; }
+    :global(.flavour-grid) { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
+
+<script>
+  var PID = 'dc8pwssq';
+  var DS = 'production';
+  var Q = encodeURIComponent('*[_type == "celsiusFlavour"] | order(name asc){name, "slug": slug.current, "img": image.asset->url, "color": image.asset->metadata.palette.vibrant.background}');
+  var API = 'https://' + PID + '.api.sanity.io/v2024-01-01/data/query/' + DS + '?query=' + Q;
+
+  function esc(s) { return s ? String(s) : ''; }
+
+  function card(f) {
+    var accent = f.color || '#e8e8e8';
+    var inner =
+      '<span class="flavour-tag">Skoða →</span>' +
+      '<div class="flavour-accent" style="background:' + accent + '"></div>' +
+      '<div class="flavour-photo">' +
+        (f.img ? '<img src="' + f.img + '?w=500" alt="' + esc(f.name) + '">' : '') +
+      '</div>' +
+      '<div class="flavour-meta">' +
+        '<div class="flavour-name">' + esc(f.name) + '</div>' +
+      '</div>';
+    if (f.slug) {
+      return '<a class="flavour-card" href="/celsius-sida?slug=' + f.slug + '">' + inner + '</a>';
+    }
+    return '<div class="flavour-card">' + inner + '</div>';
+  }
+
+  fetch(API)
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      var flavours = data.result || [];
+      var root = document.getElementById('flavours-root');
+      root.innerHTML = flavours.length
+        ? flavours.map(card).join('')
+        : '<p class="empty-note">Engar bragðtegundir skráðar ennþá.</p>';
+    });
+</script>

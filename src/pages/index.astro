@@ -4,30 +4,29 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="Forsíða">
   <div class="home-hero">
-    <div class="home-hero-left">
-      <div class="home-hero-eyebrow">Kvikmyndadreifing & þjónusta</div>
-      <h1>Við komum<br>myndunum<br><span>í bíó.</span></h1>
-    </div>
-    <div class="home-hero-right">
-      <p>Myndform hefur starfað við kvikmyndadreifingu, hönnun, prentun og heildsölu í áratugi. Við þjónum kvikmyndahúsum, smásöluaðilum og auglýsendum um allt land.</p>
-      <div class="home-services">
-        <a href="/films" class="service-card">
-          <div class="service-name">Kvikmyndadreifing</div>
-          <div class="service-desc">Dreifing á erlendum og innlendum myndum</div>
-        </a>
-        <a href="/portfolio" class="service-card">
-          <div class="service-name">Auglýsingahönnun</div>
-          <div class="service-desc">Hönnun og framleiðsla auglýsinga</div>
-        </a>
-        <a href="/prentun" class="service-card">
-          <div class="service-name">Prentun</div>
-          <div class="service-desc">Bílamerkingar, skilt og prentverkefni</div>
-        </a>
-        <a href="/heildsala" class="service-card">
-          <div class="service-name">Heildsala</div>
-          <div class="service-desc">Borðspil, leikföng og matvörur</div>
-        </a>
-      </div>
+    <div class="home-hero-eyebrow">Kvikmyndadreifing & þjónusta</div>
+    <h1>Við komum myndunum <span>í bíó.</span></h1>
+  </div>
+
+  <div class="intro-section">
+    <p class="page-intro">Myndform hefur starfað við kvikmyndadreifingu, hönnun, prentun og heildsölu í áratugi. Við þjónum kvikmyndahúsum, smásöluaðilum og auglýsendum um allt land.</p>
+    <div class="home-services">
+      <a href="/films" class="service-card">
+        <div class="service-name">Kvikmyndadreifing</div>
+        <div class="service-desc">Dreifing á erlendum og innlendum myndum</div>
+      </a>
+      <a href="/portfolio" class="service-card">
+        <div class="service-name">Auglýsingahönnun</div>
+        <div class="service-desc">Hönnun og framleiðsla auglýsinga</div>
+      </a>
+      <a href="/prentun" class="service-card">
+        <div class="service-name">Prentun</div>
+        <div class="service-desc">Bílamerkingar, skilt og prentverkefni</div>
+      </a>
+      <a href="/heildsala" class="service-card">
+        <div class="service-name">Heildsala</div>
+        <div class="service-desc">Borðspil, leikföng og matvörur</div>
+      </a>
     </div>
   </div>
 
@@ -71,10 +70,6 @@ import Layout from '../layouts/Layout.astro';
     background: #1a1a1d;
     color: var(--white);
     padding: 72px 48px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    align-items: center;
   }
   .home-hero-eyebrow {
     font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
@@ -82,37 +77,40 @@ import Layout from '../layouts/Layout.astro';
   }
   h1 {
     font-size: 52px; font-weight: 700; line-height: 1.05;
-    letter-spacing: -0.02em; color: var(--white); margin-bottom: 0;
+    letter-spacing: -0.02em; color: var(--white); margin: 0; max-width: 760px;
   }
   h1 span { color: var(--red); }
-  .home-hero-right p {
-    font-size: 16px; color: rgba(255,255,255,0.65);
-    line-height: 1.75; margin-bottom: 32px;
+
+  .intro-section { padding: 48px 48px 8px; }
+  .page-intro {
+    font-size: 23px; color: var(--black); line-height: 1.5;
+    max-width: 720px; margin: 0 0 40px;
+    font-weight: 500; letter-spacing: -0.01em;
+    padding-left: 22px; border-left: 3px solid var(--red);
   }
   .home-services {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
   }
   .service-card {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: var(--gray-10);
+    border: 1px solid var(--gray-20);
     border-left: 3px solid var(--red);
     border-radius: 0 8px 8px 0;
-    padding: 16px 18px;
+    padding: 18px 20px;
     text-decoration: none;
     color: inherit;
     display: block;
-    transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+    transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
   }
   .service-card:hover {
-    background: rgba(255,255,255,0.1);
-    border-color: rgba(255,255,255,0.2);
-    border-left-color: var(--red);
+    background: var(--white);
     transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.07);
   }
-  .service-name { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 5px; }
-  .service-desc { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.5; }
+  .service-name { font-size: 14px; font-weight: 600; color: var(--black); margin-bottom: 5px; }
+  .service-desc { font-size: 12px; color: var(--gray-60); line-height: 1.5; }
 
-  .film-section { padding: 56px 48px 16px; }
+  .film-section { padding: 48px 48px 16px; }
   .film-block { margin-bottom: 48px; }
   .block-head {
     display: flex; justify-content: space-between; align-items: flex-end;
@@ -130,15 +128,9 @@ import Layout from '../layouts/Layout.astro';
   .see-all:hover { color: var(--red); }
   .loading { font-size: 14px; color: var(--gray-60); }
 
-  /* Injected by the script, so :global() lets the styles reach it. */
-
   :global(.home-film-grid) { display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; }
-  :global(.home-film-grid .empty-note) {
-    font-size: 14px; color: var(--gray-60); grid-column: 1 / -1;
-  }
-  :global(.home-film-grid .film-card) {
-    display: block; text-decoration: none; color: inherit; min-width: 0;
-  }
+  :global(.home-film-grid .empty-note) { font-size: 14px; color: var(--gray-60); grid-column: 1 / -1; }
+  :global(.home-film-grid .film-card) { display: block; text-decoration: none; color: inherit; min-width: 0; }
   :global(.home-film-grid .poster-wrap) {
     width: 100%; aspect-ratio: 2/3; border-radius: 8px;
     overflow: hidden; background: #1a1a1a; margin-bottom: 10px;
@@ -146,8 +138,7 @@ import Layout from '../layouts/Layout.astro';
     transition: transform 0.18s ease, box-shadow 0.18s ease;
   }
   :global(.home-film-grid a.film-card:hover .poster-wrap) {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 26px rgba(0,0,0,0.18);
+    transform: translateY(-4px); box-shadow: 0 10px 26px rgba(0,0,0,0.18);
   }
   :global(.home-film-grid .poster-wrap img) {
     position: absolute; inset: 0; width: 100%; height: 100%;
@@ -175,14 +166,18 @@ import Layout from '../layouts/Layout.astro';
   .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .reveal.in { opacity: 1; transform: translateY(0); }
 
-  @media (max-width: 1100px) { :global(.home-film-grid) { grid-template-columns: repeat(5, 1fr); } }
+  @media (max-width: 1100px) {
+    :global(.home-film-grid) { grid-template-columns: repeat(5, 1fr); }
+    .home-services { grid-template-columns: repeat(2, 1fr); }
+  }
   @media (max-width: 900px) {
     :global(.home-film-grid) { grid-template-columns: repeat(4, 1fr); }
     .cred-sep { display: none; }
   }
   @media (max-width: 700px) {
-    .home-hero { grid-template-columns: 1fr; padding: 48px 20px; gap: 32px; }
+    .home-hero { padding: 48px 20px; }
     h1 { font-size: 36px; }
+    .intro-section { padding: 40px 20px 8px; }
     .home-services { grid-template-columns: 1fr; }
     .film-section { padding: 40px 20px 8px; }
     :global(.home-film-grid) { grid-template-columns: repeat(3, 1fr); }

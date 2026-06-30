@@ -24,28 +24,33 @@ import Layout from '../layouts/Layout.astro';
   }
   .brand-page :global(.back-link:hover) { color: var(--red); }
 
-  .brand-page :global(.hero) { background: #1a1a1d; padding: 48px 0; margin-top: 20px; }
+  .brand-page :global(.hero) { background: var(--gray-10); padding: 44px 0; margin-top: 20px; border-bottom: 1px solid var(--gray-20); }
   .brand-page :global(.hero-inner) {
     max-width: none; margin: 0; padding: 0 48px;
-    display: grid; grid-template-columns: 300px 1fr; gap: 56px; align-items: center;
+    display: grid; grid-template-columns: 280px 1fr; gap: 56px; align-items: center;
   }
   .brand-page :global(.hero-logo) {
     background: #fff; border-radius: 14px;
     aspect-ratio: 3/2; display: flex; align-items: center; justify-content: center; padding: 32px;
+    border: 1px solid var(--gray-20);
+    box-shadow: 0 6px 22px rgba(0,0,0,0.07);
   }
   .brand-page :global(.hero-logo img) { max-width: 100%; max-height: 100%; object-fit: contain; }
   .brand-page :global(.hero-eyebrow) {
     font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
-    text-transform: uppercase; color: #ff5a5a; margin-bottom: 12px;
+    text-transform: uppercase; color: var(--red); margin-bottom: 12px;
   }
   .brand-page :global(.hero h1) {
-    font-size: 42px; font-weight: 700; color: #fff;
-    line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 14px;
+    font-size: 42px; font-weight: 700; color: var(--black);
+    line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 20px;
   }
-  .brand-page :global(.hero-tagline) { font-size: 17px; color: rgba(255,255,255,0.85); line-height: 1.5; margin-bottom: 18px; }
-  .brand-page :global(.hero-desc) { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.75; max-width: 640px; margin-bottom: 20px; }
-  .brand-page :global(.hero-soldat) { font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 24px; }
-  .brand-page :global(.hero-soldat strong) { color: rgba(255,255,255,0.9); font-weight: 600; }
+  .brand-page :global(.hero h1) {
+    font-size: 42px; font-weight: 700; color: var(--black);
+    line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 20px;
+  }
+  .brand-page :global(.hero-tagline) {
+    font-size: 17px; color: var(--gray-60); line-height: 1.5; margin-bottom: 20px;
+  }
   .brand-page :global(.order-btn) {
     display: inline-block; background: var(--red); color: #fff;
     padding: 13px 26px; border-radius: 5px;
@@ -90,6 +95,17 @@ import Layout from '../layouts/Layout.astro';
     .brand-page :global(.back-bar) { padding-left: 20px; padding-right: 20px; }
     .brand-page :global(.product-grid) { grid-template-columns: repeat(2, 1fr); }
   }
+  .brand-page :global(.page-intro) {
+    font-size: 22px; color: var(--black); line-height: 1.5;
+    max-width: 720px; margin: 0 0 20px;
+    font-weight: 500; letter-spacing: -0.01em;
+    padding-left: 22px; border-left: 3px solid var(--red);
+    white-space: pre-line;
+  }
+  .brand-page :global(.brand-soldat) {
+    font-size: 14px; color: var(--gray-60); margin-bottom: 36px;
+  }
+  .brand-page :global(.brand-soldat strong) { color: var(--black); font-weight: 600; }
 </style>
 
 <script>
@@ -132,6 +148,8 @@ import Layout from '../layouts/Layout.astro';
           '</a>';
         }).join('');
 
+        var introText = [b.tagline, b.description].filter(Boolean).join('\n\n');
+
         box.innerHTML =
           '<div class="back-bar"><a class="back-link" href="/heildsala">← Til baka í heildsölu</a></div>' +
           '<div class="hero"><div class="hero-inner">' +
@@ -142,12 +160,12 @@ import Layout from '../layouts/Layout.astro';
               '<div class="hero-eyebrow">Heildsala</div>' +
               '<h1>' + esc(b.name) + '</h1>' +
               (b.tagline ? '<div class="hero-tagline">' + esc(b.tagline) + '</div>' : '') +
-              (b.description ? '<p class="hero-desc">' + esc(b.description) + '</p>' : '') +
-              (b.soldAt ? '<div class="hero-soldat"><strong>Fæst í:</strong> ' + esc(b.soldAt) + '</div>' : '') +
               '<a class="order-btn" href="' + orderLink + '">Hafðu samband til að panta</a>' +
             '</div>' +
           '</div></div>' +
           '<div class="body">' +
+            (b.description ? '<p class="page-intro">' + esc(b.description) + '</p>' : '') +
+            (b.soldAt ? '<div class="brand-soldat"><strong>Fæst í:</strong> ' + esc(b.soldAt) + '</div>' : '') +
             (products
               ? '<div class="products-label">Vörur</div><div class="product-grid">' + products + '</div>'
               : '<p class="no-products">Engar vörur skráðar ennþá.</p>') +
