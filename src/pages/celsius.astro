@@ -3,21 +3,62 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Celsius">
-  <div class="site-hero">
-    <div class="site-hero-eyebrow">Heildsala</div>
-    <h1>Celsius</h1>
-    <div class="site-hero-actions">
-      <a href="mailto:myndform@myndform.is?subject=Fyrirspurn%20um%20Celsius" class="site-hero-btn">Hafðu samband til að panta</a>
+  <div class="brand-hero">
+    <div class="brand-hero-inner">
+      <div class="brand-hero-logo">
+        <img src="/celsius-logo.png" alt="Celsius">
+      </div>
+      <div class="brand-hero-info">
+        <div class="brand-hero-eyebrow">Heildsala</div>
+        <h1>Celsius</h1>
+        <div class="brand-hero-tagline">Orkudrykkurinn Celsius — ferskar bragðtegundir í heildsölu.</div>
+        <a href="mailto:myndform@myndform.is?subject=Fyrirspurn%20um%20Celsius" class="brand-order-btn">Hafðu samband til að panta</a>
+      </div>
     </div>
   </div>
 
   <div class="content">
-    <p class="page-intro">Orkudrykkurinn Celsius — ferskar bragðtegundir í heildsölu. Smelltu á bragðtegund til að sjá nánar, eða hafðu samband til að panta.</p>
+    <p class="page-intro">Smelltu á bragðtegund til að sjá nánar, eða hafðu samband til að panta í heildsölu.</p>
     <div id="flavours-root" class="flavour-grid"><p class="loading">Sæki bragðtegundir…</p></div>
   </div>
 </Layout>
 
 <style>
+  .brand-hero {
+    background: var(--gray-10);
+    padding: 44px 0;
+    border-bottom: 1px solid var(--gray-20);
+  }
+  .brand-hero-inner {
+    max-width: none; margin: 0; padding: 0 48px;
+    display: grid; grid-template-columns: 280px 1fr; gap: 56px; align-items: center;
+  }
+  .brand-hero-logo {
+    background: #fff; border-radius: 14px;
+    aspect-ratio: 3/2; display: flex; align-items: center; justify-content: center; padding: 32px;
+    border: 1px solid var(--gray-20);
+    box-shadow: 0 6px 22px rgba(0,0,0,0.07);
+  }
+  .brand-hero-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .brand-hero-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--red); margin-bottom: 12px;
+  }
+  .brand-hero h1 {
+    font-size: 42px; font-weight: 700; color: var(--black);
+    line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 12px;
+  }
+  .brand-hero-tagline {
+    font-size: 17px; color: var(--gray-60); line-height: 1.5; margin-bottom: 20px;
+  }
+  .brand-order-btn {
+    display: inline-block; background: var(--red); color: #fff;
+    padding: 13px 26px; border-radius: 5px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; text-decoration: none; transition: background 0.15s;
+  }
+  .brand-order-btn:hover { background: var(--red-dark); }
+
   .content { padding: 48px 48px 80px; }
   .loading { font-size: 14px; color: var(--gray-60); }
 
@@ -64,8 +105,14 @@ import Layout from '../layouts/Layout.astro';
   :global(.flavour-card:hover .flavour-tag) { opacity: 1; transform: translateY(0); }
 
   @media (max-width: 1200px) { :global(.flavour-grid) { grid-template-columns: repeat(4, 1fr); } }
-  @media (max-width: 900px)  { :global(.flavour-grid) { grid-template-columns: repeat(3, 1fr); } }
-  @media (max-width: 700px)  {
+  @media (max-width: 1000px) {
+    .brand-hero-inner { grid-template-columns: 1fr; gap: 28px; }
+    .brand-hero-logo { max-width: 260px; }
+    :global(.flavour-grid) { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 700px) {
+    .brand-hero-inner { padding: 0 20px; }
+    .brand-hero h1 { font-size: 32px; }
     .content { padding: 40px 20px 60px; }
     :global(.flavour-grid) { grid-template-columns: repeat(2, 1fr); }
   }

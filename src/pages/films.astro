@@ -3,8 +3,8 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Kvikmyndadreifing">
-  <div class="film-hero">
-    <div class="film-hero-eyebrow">Myndform · Kvikmyndadreifing</div>
+  <div class="site-hero">
+    <div class="site-hero-eyebrow">Myndform · Kvikmyndadreifing</div>
     <h1>Kvikmyndir</h1>
   </div>
 
@@ -28,21 +28,9 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
-  .film-hero {
-    background: #1a1a1d;
-    padding: 56px 32px 48px;
-  }
-  .film-hero-eyebrow {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--red); margin-bottom: 12px;
-  }
-  h1 {
-    font-size: 38px; font-weight: 700; color: var(--white);
-    letter-spacing: -0.02em;
-  }
   .film-tabs {
     display: flex; border-bottom: 1px solid var(--gray-20);
-    padding: 0 32px; background: var(--white);
+    padding: 0 48px; background: var(--white);
     position: sticky; top: 56px; z-index: 9;
   }
   .tab {
