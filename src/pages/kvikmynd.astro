@@ -13,6 +13,20 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
   </div>
+
+  <div class="ticket-modal-overlay" id="ticket-modal">
+    <div class="ticket-modal">
+      <div class="ticket-modal-head">
+        <div>
+          <div class="ticket-modal-eyebrow">Miðasala</div>
+          <div class="ticket-modal-title">Veldu kvikmyndahús</div>
+        </div>
+        <button class="ticket-modal-close" id="ticket-modal-close" aria-label="Loka">✕</button>
+      </div>
+      <div class="ticket-modal-sub">Smelltu á bíó til að kaupa miða á vef þeirra.</div>
+      <div class="ticket-list" id="ticket-list"></div>
+    </div>
+  </div>
 </Layout>
 
 <style>
@@ -91,7 +105,7 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .film-detail :global(.chips) {
-    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px;
+    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px;
   }
   .film-detail :global(.chip) {
     display: inline-flex; align-items: center; gap: 6px;
@@ -103,6 +117,22 @@ import Layout from '../layouts/Layout.astro';
     padding: 6px 13px; border-radius: 999px;
     background: var(--red); color: #fff; font-size: 12px; font-weight: 600;
   }
+
+  /* Miðar button */
+  /* Miðar button */
+  .film-detail :global(.ticket-btn) {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.08); color: #fff;
+    padding: 13px 24px; border-radius: 999px;
+    border-left: 3px solid var(--red);
+    font-size: 14px; font-weight: 600; letter-spacing: 0.01em;
+    border-top: none; border-right: none; border-bottom: none;
+    cursor: pointer; margin-bottom: 26px;
+    transition: background 0.15s, transform 0.15s;
+    font-family: var(--font);
+  }
+  .film-detail :global(.ticket-btn:hover) { background: rgba(224,32,32,0.18); transform: translateY(-2px); }
+  .film-detail :global(.ticket-btn svg) { flex-shrink: 0; }
 
   .film-detail :global(.meta-rows) {
     margin: 4px 0 0; border-top: 0.5px solid rgba(255,255,255,0.14);
@@ -118,6 +148,7 @@ import Layout from '../layouts/Layout.astro';
   .film-detail :global(.meta-value) {
     font-size: 14px; color: rgba(255,255,255,0.92); line-height: 1.5;
   }
+  .film-detail :global(.meta-value.ice) { color: #ffd7d7; }
 
   .film-detail :global(.detail-desc-label) {
     font-size: 11px; font-weight: 600; letter-spacing: 0.05em;
@@ -146,6 +177,48 @@ import Layout from '../layouts/Layout.astro';
   .film-detail :global(.trailer-wrap iframe) {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
   }
+
+  /* ── TICKET MODAL ── */
+  .ticket-modal-overlay {
+    position: fixed; inset: 0; z-index: 100;
+    background: rgba(0,0,0,0.6);
+    display: none; align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  .ticket-modal-overlay.open { display: flex; }
+  .ticket-modal {
+    background: #1a1a1d; border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 14px; padding: 26px;
+    width: 100%; max-width: 360px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    animation: fadeUp 0.25s ease both;
+  }
+  .ticket-modal-head {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    margin-bottom: 6px;
+  }
+  .ticket-modal-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #ff5a5a; margin-bottom: 8px;
+  }
+  .ticket-modal-title { font-size: 20px; font-weight: 700; color: #fff; }
+  .ticket-modal-close {
+    background: none; border: none; color: rgba(255,255,255,0.5);
+    font-size: 18px; cursor: pointer; padding: 4px; line-height: 1;
+    transition: color 0.15s;
+  }
+  .ticket-modal-close:hover { color: #fff; }
+  .ticket-modal-sub { font-size: 13px; color: rgba(255,255,255,0.55); margin: 6px 0 20px; line-height: 1.5; }
+  .ticket-list { display: flex; flex-direction: column; gap: 10px; }
+  :global(.ticket-item) {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    background: rgba(255,255,255,0.05); border-left: 3px solid var(--red);
+    padding: 15px 18px;
+    color: #fff; text-decoration: none; font-size: 15px; font-weight: 600;
+    transition: background 0.15s;
+  }
+  :global(.ticket-item:hover) { background: rgba(224,32,32,0.18); }
+  :global(.ticket-item .ticket-arrow) { flex-shrink: 0; color: #ff5a5a; font-size: 17px; }
 
   @media (max-width: 1100px) {
     .film-detail :global(.detail-grid) { grid-template-columns: calc((100vw - 106px) / 4) 1fr; }
@@ -195,13 +268,25 @@ import Layout from '../layouts/Layout.astro';
     return id ? 'https://www.youtube.com/embed/' + id : '';
   }
   function esc(s) { return s ? String(s) : ''; }
-  function row(label, value) {
+  function row(label, value, cls) {
     if (!value) return '';
-    return '<div class="meta-row"><div class="meta-label">' + label + '</div><div class="meta-value">' + value + '</div></div>';
+    return '<div class="meta-row"><div class="meta-label">' + label + '</div><div class="meta-value' + (cls ? ' ' + cls : '') + '">' + value + '</div></div>';
   }
+
+  var EXT = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
+  var TICKET = '<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#ff5a5a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v3a2 2 0 0 0 0 4v3H3v-3a2 2 0 0 0 0-4z"/><path d="M15 7v10" stroke-dasharray="1.5 2.5"/></svg>';
 
   var slug = new URLSearchParams(window.location.search).get('slug');
   var box = document.getElementById('detail-content');
+  var modal = document.getElementById('ticket-modal');
+  var modalClose = document.getElementById('ticket-modal-close');
+  var ticketList = document.getElementById('ticket-list');
+
+  function openModal() { modal.classList.add('open'); }
+  function closeModal() { modal.classList.remove('open'); }
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
   if (!slug) {
     box.innerHTML = '<p class="detail-empty">Engin kvikmynd valin. <a href="/films">Til baka í lista</a>.</p>';
@@ -230,6 +315,11 @@ import Layout from '../layouts/Layout.astro';
         var status = statusLabel(f.status);
         var embed = ytEmbed(f.trailer);
 
+        var hasCinemas = f.cinemas && f.cinemas.length;
+        var ticketBtn = hasCinemas
+          ? '<button class="ticket-btn" id="open-tickets">' + TICKET + 'Miðar</button>'
+          : '';
+
         var trailerBlock = embed
           ? '<div class="trailer-label">Sýnishorn</div><div class="trailer-wrap"><iframe src="' + embed + '" title="Sýnishorn" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'
           : '';
@@ -246,16 +336,29 @@ import Layout from '../layouts/Layout.astro';
                 (status ? '<span class="status-pill">' + status + '</span>' : '') +
               '</div>' +
               (chips ? '<div class="chips">' + chips + '</div>' : '') +
+              ticketBtn +
               '<div class="meta-rows">' +
                 row('Leikstjóri', esc(f.director)) +
                 row('Handritshöfundur', esc(f.writer)) +
                 row('Helstu leikarar', esc(f.cast)) +
+                row('Íslenskar raddir', esc(f.icelandicCast), 'ice') +
               '</div>' +
               (f.description ? '<div class="detail-desc-label">Lýsing</div><p class="detail-desc">' + esc(f.description) + '</p>' : '') +
               (f.note ? '<p class="detail-note">' + esc(f.note) + '</p>' : '') +
               trailerBlock +
             '</div>' +
           '</div>';
+
+        // Wire up the ticket modal
+        if (hasCinemas) {
+          ticketList.innerHTML = f.cinemas.map(function(c) {
+            return '<a class="ticket-item" href="' + esc(c.url) + '" target="_blank" rel="noopener noreferrer">' +
+              '<span>' + esc(c.name) + '</span><span class="ticket-arrow">→</span>' +
+            '</a>';
+          }).join('');
+          var openBtn = document.getElementById('open-tickets');
+          if (openBtn) openBtn.addEventListener('click', openModal);
+        }
       });
   }
 </script>
